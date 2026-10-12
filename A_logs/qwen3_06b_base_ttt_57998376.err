@@ -1,122 +1,0 @@
-[INFO|tokenization_utils_base.py:2109] 2026-09-17 11:24:27,321 >> loading file vocab.json
-[INFO|tokenization_utils_base.py:2109] 2026-09-17 11:24:27,322 >> loading file merges.txt
-[INFO|tokenization_utils_base.py:2109] 2026-09-17 11:24:27,322 >> loading file tokenizer.json
-[INFO|tokenization_utils_base.py:2109] 2026-09-17 11:24:27,322 >> loading file added_tokens.json
-[INFO|tokenization_utils_base.py:2109] 2026-09-17 11:24:27,322 >> loading file special_tokens_map.json
-[INFO|tokenization_utils_base.py:2109] 2026-09-17 11:24:27,322 >> loading file tokenizer_config.json
-[INFO|tokenization_utils_base.py:2109] 2026-09-17 11:24:27,322 >> loading file chat_template.jinja
-[INFO|tokenization_utils_base.py:2380] 2026-09-17 11:24:28,250 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-[INFO|configuration_utils.py:763] 2026-09-17 11:24:58,320 >> loading configuration file /leonardo_work/IscrB_MOSAIC/franci/huggingface/models/Qwen3-0.6B-Base/config.json
-[INFO|configuration_utils.py:839] 2026-09-17 11:24:58,321 >> Model config Qwen3Config {
-  "architectures": [
-    "Qwen3ForCausalLM"
-  ],
-  "attention_bias": false,
-  "attention_dropout": 0.0,
-  "bos_token_id": 151643,
-  "dtype": "bfloat16",
-  "eos_token_id": 151643,
-  "head_dim": 128,
-  "hidden_act": "silu",
-  "hidden_size": 1024,
-  "initializer_range": 0.02,
-  "intermediate_size": 3072,
-  "layer_types": [
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention"
-  ],
-  "max_position_embeddings": 32768,
-  "max_window_layers": 28,
-  "model_type": "qwen3",
-  "num_attention_heads": 16,
-  "num_hidden_layers": 28,
-  "num_key_value_heads": 8,
-  "rms_norm_eps": 1e-06,
-  "rope_scaling": null,
-  "rope_theta": 1000000,
-  "sliding_window": null,
-  "tie_word_embeddings": true,
-  "transformers_version": "4.57.3",
-  "ttt_chunk": 1024,
-  "ttt_conv": false,
-  "ttt_inner_opt": "sgd",
-  "ttt_layers": [
-    0,
-    4,
-    8,
-    12,
-    16,
-    20,
-    24
-  ],
-  "ttt_lr": 2.6,
-  "ttt_mode": true,
-  "ttt_norm_preserve": true,
-  "ttt_predict_mode": "next",
-  "ttt_proj": true,
-  "ttt_proj_init": "diag_shared",
-  "ttt_target": "hidden_states",
-  "use_cache": true,
-  "use_sliding_window": false,
-  "vocab_size": 151936
-}
-
-[WARNING|modeling_utils.py:2285] 2026-09-17 11:24:59,107 >> `torch_dtype` is deprecated! Use `dtype` instead!
-[INFO|modeling_utils.py:2341] 2026-09-17 11:24:59,107 >> Instantiating Qwen3ForCausalLM model under default dtype torch.float32.
-[INFO|configuration_utils.py:986] 2026-09-17 11:24:59,109 >> Generate config GenerationConfig {
-  "bos_token_id": 151643,
-  "eos_token_id": 151643
-}
-
-Loading checkpoint shards:   0%|          | 0/1 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 1/1 [00:24<00:00, 24.80s/it]Loading checkpoint shards: 100%|██████████| 1/1 [00:24<00:00, 24.80s/it]
-[INFO|configuration_utils.py:491] 2026-09-17 11:25:26,463 >> Configuration saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/model_assets/config.json
-[INFO|tokenization_utils_base.py:2556] 2026-09-17 11:25:26,464 >> chat template saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/model_assets/chat_template.jinja
-[INFO|tokenization_utils_base.py:2725] 2026-09-17 11:25:26,466 >> tokenizer config file saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/model_assets/tokenizer_config.json
-[INFO|tokenization_utils_base.py:2734] 2026-09-17 11:25:26,467 >> Special tokens file saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/model_assets/special_tokens_map.json
-Epoch 1/1:   0%|          | 0/100 [00:00<?, ?it/s]Epoch 1/1:   1%|          | 1/100 [01:41<2:46:50, 101.12s/it, loss: 18.4562, grad_norm: 4753926.0000, lr: 1.00e-06]Epoch 1/1:   2%|▏         | 2/100 [02:53<2:17:40, 84.30s/it, loss: 18.6104, grad_norm: 4291855.0000, lr: 2.00e-06] Epoch 1/1:   3%|▎         | 3/100 [04:06<2:07:34, 78.91s/it, loss: 13.7233, grad_norm: 34062.5156, lr: 3.00e-06]  Epoch 1/1:   4%|▍         | 4/100 [05:18<2:02:12, 76.38s/it, loss: 13.0766, grad_norm: 22060.8027, lr: 4.00e-06]Epoch 1/1:   5%|▌         | 5/100 [06:31<1:58:42, 74.98s/it, loss: 12.0450, grad_norm: 14587.8457, lr: 5.00e-06]Epoch 1/1:   6%|▌         | 6/100 [07:43<1:56:07, 74.12s/it, loss: 11.5804, grad_norm: 14684.4541, lr: 5.00e-06]Epoch 1/1:   7%|▋         | 7/100 [08:56<1:54:03, 73.59s/it, loss: 10.6207, grad_norm: 4649.0503, lr: 4.99e-06] Epoch 1/1:   8%|▊         | 8/100 [10:08<1:52:17, 73.23s/it, loss: 10.3172, grad_norm: 6508.4722, lr: 4.98e-06]Epoch 1/1:   9%|▉         | 9/100 [11:20<1:50:40, 72.97s/it, loss: 9.9319, grad_norm: 3207.0649, lr: 4.97e-06] Epoch 1/1:  10%|█         | 10/100 [12:33<1:49:11, 72.79s/it, loss: 9.8184, grad_norm: 2934.0554, lr: 4.96e-06]Epoch 1/1:  11%|█         | 11/100 [13:45<1:47:48, 72.68s/it, loss: 9.4291, grad_norm: 3574.9170, lr: 4.94e-06]Epoch 1/1:  12%|█▏        | 12/100 [14:58<1:46:29, 72.60s/it, loss: 9.2885, grad_norm: 1321.3351, lr: 4.92e-06]Epoch 1/1:  13%|█▎        | 13/100 [16:10<1:45:11, 72.55s/it, loss: 9.1165, grad_norm: 1218.6110, lr: 4.89e-06]Epoch 1/1:  14%|█▍        | 14/100 [17:23<1:43:55, 72.51s/it, loss: 8.9107, grad_norm: 1460.1913, lr: 4.87e-06]Epoch 1/1:  15%|█▌        | 15/100 [18:35<1:42:40, 72.47s/it, loss: 8.9646, grad_norm: 785.3043, lr: 4.83e-06] Epoch 1/1:  16%|█▌        | 16/100 [19:47<1:41:26, 72.45s/it, loss: 8.7516, grad_norm: 691.8934, lr: 4.80e-06]Epoch 1/1:  17%|█▋        | 17/100 [21:00<1:40:12, 72.44s/it, loss: 8.6498, grad_norm: 724.3983, lr: 4.76e-06]Epoch 1/1:  18%|█▊        | 18/100 [22:12<1:38:58, 72.43s/it, loss: 8.5255, grad_norm: 499.0450, lr: 4.72e-06]Epoch 1/1:  19%|█▉        | 19/100 [23:25<1:37:45, 72.42s/it, loss: 8.3567, grad_norm: 548.5406, lr: 4.68e-06]Epoch 1/1:  20%|██        | 20/100 [24:37<1:36:33, 72.41s/it, loss: 8.2105, grad_norm: 839.3337, lr: 4.63e-06]Epoch 1/1:  21%|██        | 21/100 [25:49<1:35:20, 72.41s/it, loss: 8.2605, grad_norm: 350.7912, lr: 4.58e-06]Epoch 1/1:  22%|██▏       | 22/100 [27:02<1:34:07, 72.41s/it, loss: 8.2642, grad_norm: 354.8801, lr: 4.53e-06]Epoch 1/1:  23%|██▎       | 23/100 [28:14<1:32:54, 72.40s/it, loss: 8.1639, grad_norm: 277.0802, lr: 4.48e-06]Epoch 1/1:  24%|██▍       | 24/100 [29:26<1:31:42, 72.40s/it, loss: 7.9933, grad_norm: 312.3630, lr: 4.42e-06]Epoch 1/1:  25%|██▌       | 25/100 [30:39<1:30:29, 72.40s/it, loss: 8.1410, grad_norm: 202.3072, lr: 4.36e-06]Epoch 1/1:  26%|██▌       | 26/100 [31:51<1:29:17, 72.40s/it, loss: 8.0098, grad_norm: 214.8144, lr: 4.30e-06]Epoch 1/1:  27%|██▋       | 27/100 [33:04<1:28:04, 72.40s/it, loss: 8.0095, grad_norm: 355.8063, lr: 4.23e-06]Epoch 1/1:  28%|██▊       | 28/100 [34:16<1:26:52, 72.40s/it, loss: 7.9392, grad_norm: 236.2451, lr: 4.17e-06]Epoch 1/1:  29%|██▉       | 29/100 [35:28<1:25:40, 72.40s/it, loss: 7.9541, grad_norm: 195.6861, lr: 4.10e-06]Epoch 1/1:  30%|███       | 30/100 [36:41<1:24:28, 72.41s/it, loss: 7.8465, grad_norm: 143.8057, lr: 4.03e-06]Epoch 1/1:  31%|███       | 31/100 [37:53<1:23:16, 72.42s/it, loss: 7.6803, grad_norm: 301.5623, lr: 3.95e-06]Epoch 1/1:  32%|███▏      | 32/100 [39:06<1:22:05, 72.43s/it, loss: 7.6822, grad_norm: 148.6692, lr: 3.88e-06]Epoch 1/1:  33%|███▎      | 33/100 [40:18<1:20:53, 72.44s/it, loss: 7.7731, grad_norm: 157.5334, lr: 3.80e-06]Epoch 1/1:  34%|███▍      | 34/100 [41:31<1:19:41, 72.45s/it, loss: 7.5773, grad_norm: 228.8185, lr: 3.72e-06]Epoch 1/1:  35%|███▌      | 35/100 [42:43<1:18:30, 72.47s/it, loss: 7.5682, grad_norm: 155.8864, lr: 3.64e-06]Epoch 1/1:  36%|███▌      | 36/100 [43:56<1:17:18, 72.48s/it, loss: 7.5142, grad_norm: 142.5618, lr: 3.56e-06]Epoch 1/1:  37%|███▋      | 37/100 [45:08<1:16:06, 72.48s/it, loss: 7.4771, grad_norm: 119.8127, lr: 3.48e-06]Epoch 1/1:  38%|███▊      | 38/100 [46:21<1:14:54, 72.50s/it, loss: 7.4814, grad_norm: 115.7336, lr: 3.39e-06]Epoch 1/1:  39%|███▉      | 39/100 [47:33<1:13:42, 72.51s/it, loss: 7.4269, grad_norm: 100.0717, lr: 3.31e-06]Epoch 1/1:  40%|████      | 40/100 [48:46<1:12:31, 72.52s/it, loss: 7.4953, grad_norm: 203.4454, lr: 3.22e-06]Epoch 1/1:  41%|████      | 41/100 [49:58<1:11:19, 72.54s/it, loss: 7.3504, grad_norm: 154.5992, lr: 3.13e-06]Epoch 1/1:  42%|████▏     | 42/100 [51:11<1:10:07, 72.55s/it, loss: 7.1639, grad_norm: 171.4241, lr: 3.04e-06]Epoch 1/1:  43%|████▎     | 43/100 [52:24<1:08:55, 72.55s/it, loss: 7.2966, grad_norm: 113.5792, lr: 2.96e-06]Epoch 1/1:  44%|████▍     | 44/100 [53:36<1:07:43, 72.57s/it, loss: 7.0921, grad_norm: 116.4600, lr: 2.87e-06]Epoch 1/1:  45%|████▌     | 45/100 [54:49<1:06:31, 72.57s/it, loss: 7.1742, grad_norm: 87.9343, lr: 2.78e-06] Epoch 1/1:  46%|████▌     | 46/100 [56:01<1:05:19, 72.58s/it, loss: 7.1772, grad_norm: 108.0658, lr: 2.69e-06]Epoch 1/1:  47%|████▋     | 47/100 [57:14<1:04:07, 72.59s/it, loss: 7.0590, grad_norm: 85.6621, lr: 2.60e-06] Epoch 1/1:  48%|████▊     | 48/100 [58:27<1:02:54, 72.59s/it, loss: 6.9503, grad_norm: 109.8878, lr: 2.50e-06]Epoch 1/1:  49%|████▉     | 49/100 [59:39<1:01:42, 72.60s/it, loss: 6.8793, grad_norm: 95.3818, lr: 2.41e-06] Epoch 1/1:  50%|█████     | 50/100 [1:00:52<1:00:30, 72.61s/it, loss: 6.8582, grad_norm: 91.1463, lr: 2.32e-06]Epoch 1/1:  51%|█████     | 51/100 [1:02:04<59:18, 72.62s/it, loss: 6.8776, grad_norm: 88.1487, lr: 2.23e-06]  Epoch 1/1:  52%|█████▏    | 52/100 [1:03:17<58:06, 72.63s/it, loss: 6.8416, grad_norm: 82.5391, lr: 2.14e-06]Epoch 1/1:  53%|█████▎    | 53/100 [1:04:30<56:53, 72.63s/it, loss: 6.7936, grad_norm: 131.5626, lr: 2.06e-06]Epoch 1/1:  54%|█████▍    | 54/100 [1:05:42<55:40, 72.62s/it, loss: 6.8742, grad_norm: 82.7194, lr: 1.97e-06] Epoch 1/1:  55%|█████▌    | 55/100 [1:06:55<54:28, 72.63s/it, loss: 6.7832, grad_norm: 113.0446, lr: 1.88e-06]Epoch 1/1:  56%|█████▌    | 56/100 [1:08:08<53:15, 72.64s/it, loss: 6.7305, grad_norm: 91.1668, lr: 1.79e-06] Epoch 1/1:  57%|█████▋    | 57/100 [1:09:20<52:03, 72.65s/it, loss: 6.6288, grad_norm: 89.9160, lr: 1.71e-06]Epoch 1/1:  58%|█████▊    | 58/100 [1:10:33<50:51, 72.65s/it, loss: 6.7194, grad_norm: 93.2943, lr: 1.62e-06]Epoch 1/1:  59%|█████▉    | 59/100 [1:11:46<49:38, 72.65s/it, loss: 6.6646, grad_norm: 73.3749, lr: 1.54e-06]Epoch 1/1:  60%|██████    | 60/100 [1:12:58<48:26, 72.66s/it, loss: 6.6434, grad_norm: 70.2795, lr: 1.46e-06]Epoch 1/1:  61%|██████    | 61/100 [1:14:11<47:13, 72.66s/it, loss: 6.6676, grad_norm: 70.9477, lr: 1.38e-06]Epoch 1/1:  62%|██████▏   | 62/100 [1:15:24<46:01, 72.66s/it, loss: 6.5646, grad_norm: 85.0487, lr: 1.30e-06]Epoch 1/1:  63%|██████▎   | 63/100 [1:16:36<44:48, 72.66s/it, loss: 6.6026, grad_norm: 115.4782, lr: 1.22e-06]Epoch 1/1:  64%|██████▍   | 64/100 [1:17:49<43:35, 72.66s/it, loss: 6.5835, grad_norm: 95.2229, lr: 1.15e-06] Epoch 1/1:  65%|██████▌   | 65/100 [1:19:02<42:23, 72.66s/it, loss: 6.5768, grad_norm: 68.6044, lr: 1.07e-06]Epoch 1/1:  66%|██████▌   | 66/100 [1:20:14<41:10, 72.66s/it, loss: 6.5587, grad_norm: 71.7809, lr: 1.00e-06]Epoch 1/1:  67%|██████▋   | 67/100 [1:21:27<39:57, 72.67s/it, loss: 6.4765, grad_norm: 73.6668, lr: 9.33e-07]Epoch 1/1:  68%|██████▊   | 68/100 [1:22:40<38:45, 72.67s/it, loss: 6.6534, grad_norm: 80.8553, lr: 8.66e-07]Epoch 1/1:  69%|██████▉   | 69/100 [1:23:52<37:32, 72.67s/it, loss: 6.5006, grad_norm: 60.6575, lr: 8.02e-07]Epoch 1/1:  70%|███████   | 70/100 [1:25:05<36:20, 72.67s/it, loss: 6.4049, grad_norm: 78.9873, lr: 7.39e-07]Epoch 1/1:  71%|███████   | 71/100 [1:26:18<35:07, 72.68s/it, loss: 6.5893, grad_norm: 79.8001, lr: 6.80e-07]Epoch 1/1:  72%|███████▏  | 72/100 [1:27:30<33:55, 72.68s/it, loss: 6.3933, grad_norm: 89.3598, lr: 6.22e-07]Epoch 1/1:  73%|███████▎  | 73/100 [1:28:43<32:42, 72.68s/it, loss: 6.5069, grad_norm: 61.5009, lr: 5.68e-07]Epoch 1/1:  74%|███████▍  | 74/100 [1:29:56<31:29, 72.68s/it, loss: 6.5191, grad_norm: 47.8861, lr: 5.16e-07]Epoch 1/1:  75%|███████▌  | 75/100 [1:31:08<30:16, 72.67s/it, loss: 6.4124, grad_norm: 63.4403, lr: 4.67e-07]Epoch 1/1:  76%|███████▌  | 76/100 [1:32:21<29:04, 72.67s/it, loss: 6.4694, grad_norm: 70.2137, lr: 4.21e-07]Epoch 1/1:  77%|███████▋  | 77/100 [1:33:34<27:51, 72.67s/it, loss: 6.4686, grad_norm: 59.4043, lr: 3.77e-07]Epoch 1/1:  78%|███████▊  | 78/100 [1:34:46<26:38, 72.67s/it, loss: 6.3230, grad_norm: 62.9445, lr: 3.37e-07]Epoch 1/1:  79%|███████▉  | 79/100 [1:35:59<25:26, 72.67s/it, loss: 6.3407, grad_norm: 55.4628, lr: 3.00e-07]Epoch 1/1:  80%|████████  | 80/100 [1:37:12<24:13, 72.68s/it, loss: 6.4145, grad_norm: 90.1342, lr: 2.65e-07]Epoch 1/1:  81%|████████  | 81/100 [1:38:24<23:00, 72.68s/it, loss: 6.4551, grad_norm: 56.0840, lr: 2.34e-07]Epoch 1/1:  82%|████████▏ | 82/100 [1:39:37<21:48, 72.68s/it, loss: 6.4870, grad_norm: 60.3107, lr: 2.06e-07]Epoch 1/1:  83%|████████▎ | 83/100 [1:40:50<20:35, 72.68s/it, loss: 6.3396, grad_norm: 47.4481, lr: 1.82e-07]Epoch 1/1:  84%|████████▍ | 84/100 [1:42:02<19:22, 72.67s/it, loss: 6.4800, grad_norm: 51.2059, lr: 1.60e-07]Epoch 1/1:  85%|████████▌ | 85/100 [1:43:15<18:10, 72.67s/it, loss: 6.3941, grad_norm: 54.8306, lr: 1.42e-07]Epoch 1/1:  86%|████████▌ | 86/100 [1:44:28<16:57, 72.67s/it, loss: 6.3969, grad_norm: 59.8509, lr: 1.27e-07]Epoch 1/1:  87%|████████▋ | 87/100 [1:45:40<15:44, 72.68s/it, loss: 6.3751, grad_norm: 59.0565, lr: 1.15e-07]Epoch 1/1:  88%|████████▊ | 88/100 [1:46:53<14:32, 72.68s/it, loss: 6.3193, grad_norm: 64.2187, lr: 1.07e-07]Epoch 1/1:  89%|████████▉ | 89/100 [1:48:06<13:19, 72.68s/it, loss: 6.3885, grad_norm: 63.2528, lr: 1.02e-07]Epoch 1/1:  90%|█████████ | 90/100 [1:49:19<12:06, 72.69s/it, loss: 6.4001, grad_norm: 59.7338, lr: 1.00e-07]Epoch 1/1:  91%|█████████ | 91/100 [1:50:31<10:54, 72.69s/it, loss: 6.3233, grad_norm: 53.9404, lr: 1.00e-07]Epoch 1/1:  92%|█████████▏| 92/100 [1:51:44<09:41, 72.69s/it, loss: 6.4235, grad_norm: 47.7896, lr: 1.00e-07]Epoch 1/1:  93%|█████████▎| 93/100 [1:52:57<08:28, 72.69s/it, loss: 6.4300, grad_norm: 59.3736, lr: 1.00e-07]Epoch 1/1:  94%|█████████▍| 94/100 [1:54:09<07:16, 72.69s/it, loss: 6.2317, grad_norm: 50.8369, lr: 1.00e-07]Epoch 1/1:  95%|█████████▌| 95/100 [1:55:22<06:03, 72.69s/it, loss: 6.3532, grad_norm: 45.9481, lr: 1.00e-07]Epoch 1/1:  96%|█████████▌| 96/100 [1:56:35<04:50, 72.69s/it, loss: 6.4166, grad_norm: 108.9780, lr: 1.00e-07]Epoch 1/1:  97%|█████████▋| 97/100 [1:57:47<03:38, 72.70s/it, loss: 6.4002, grad_norm: 55.5942, lr: 1.00e-07] Epoch 1/1:  98%|█████████▊| 98/100 [1:59:00<02:25, 72.69s/it, loss: 6.3196, grad_norm: 47.9813, lr: 1.00e-07]Epoch 1/1:  99%|█████████▉| 99/100 [2:00:13<01:12, 72.70s/it, loss: 6.3840, grad_norm: 52.9606, lr: 1.00e-07]Epoch 1/1: 100%|██████████| 100/100 [2:01:25<00:00, 72.69s/it, loss: 6.3183, grad_norm: 56.9431, lr: 1.00e-07]Epoch 1/1: 100%|██████████| 100/100 [2:01:25<00:00, 72.86s/it, loss: 6.3183, grad_norm: 56.9431, lr: 1.00e-07]
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/checkpoint/filesystem.py:131: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-  if tensor.storage().size() != tensor.numel():
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/checkpoint/filesystem.py:131: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-  if tensor.storage().size() != tensor.numel():
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/checkpoint/filesystem.py:131: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-  if tensor.storage().size() != tensor.numel():
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/checkpoint/filesystem.py:131: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-  if tensor.storage().size() != tensor.numel():
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4807: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4807: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4807: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4807: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-[INFO|configuration_utils.py:491] 2026-09-17 13:27:08,396 >> Configuration saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/checkpoints/global_step_100/hf_ckpt/config.json
-[INFO|tokenization_utils_base.py:2556] 2026-09-17 13:27:08,398 >> chat template saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/checkpoints/global_step_100/hf_ckpt/chat_template.jinja
-[INFO|tokenization_utils_base.py:2725] 2026-09-17 13:27:08,399 >> tokenizer config file saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/checkpoints/global_step_100/hf_ckpt/tokenizer_config.json
-[INFO|tokenization_utils_base.py:2734] 2026-09-17 13:27:08,400 >> Special tokens file saved in /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/checkpoints/global_step_100/hf_ckpt/special_tokens_map.json

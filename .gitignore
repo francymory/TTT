@@ -183,3 +183,8 @@ run/wait_and_*.sh
 # local orchestration / scratch
 run/
 log.txt
+
+
+A_logs/
+results/
+scripts/
