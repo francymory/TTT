@@ -1,0 +1,205 @@
+[INFO|tokenization_utils_base.py:2109] 2026-10-02 16:56:17,125 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2109] 2026-10-02 16:56:17,126 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2109] 2026-10-02 16:56:17,126 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2109] 2026-10-02 16:56:17,126 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2109] 2026-10-02 16:56:17,126 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2109] 2026-10-02 16:56:17,126 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2109] 2026-10-02 16:56:17,126 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2380] 2026-10-02 16:56:18,271 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|configuration_utils.py:763] 2026-10-02 16:56:33,308 >> loading configuration file /leonardo_work/IscrB_MOSAIC/franci/huggingface/models/Qwen3-0.6B-Base/config.json
+[INFO|configuration_utils.py:839] 2026-10-02 16:56:33,309 >> Model config Qwen3Config {
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151643,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 28,
+  "model_type": "qwen3",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 28,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "4.57.3",
+  "ttt_chunk": 1024,
+  "ttt_conv": true,
+  "ttt_inner_opt": "sgd",
+  "ttt_layers": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24
+  ],
+  "ttt_lr": 2.6,
+  "ttt_method": "in-place-ttt",
+  "ttt_mode": true,
+  "ttt_norm_preserve": true,
+  "ttt_predict_mode": "next",
+  "ttt_proj": true,
+  "ttt_proj_init": "diag_shared",
+  "ttt_target": "hidden_states",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[WARNING|modeling_utils.py:2285] 2026-10-02 16:56:41,975 >> `torch_dtype` is deprecated! Use `dtype` instead!
+[INFO|modeling_utils.py:2341] 2026-10-02 16:56:41,975 >> Instantiating Qwen3ForCausalLM model under default dtype torch.float32.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py", line 553, in <module>
+[rank0]:     main()
+[rank0]:   File "/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py", line 277, in main
+[rank0]:     model = build_foundation_model(
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/models/auto.py", line 109, in build_foundation_model
+[rank0]:     model = loader.load_model(
+[rank0]:             ^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/models/loader.py", line 173, in load_model
+[rank0]:     model = self.model_cls.from_config(**init_kwargs)
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 456, in from_config
+[rank0]:     return model_class._from_config(config, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 2311, in _from_config
+[rank0]:     model = cls(config, **kwargs)
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo/home/userexternal/fmorandi/TTT-NTP/hf_models/hf_qwen3/modeling_qwen3.py", line 581, in __init__
+[rank0]:     super().__init__(config)
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 2076, in __init__
+[rank0]:     self.config._attn_implementation_internal = self._check_and_adjust_attn_implementation(
+[rank0]:                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 2691, in _check_and_adjust_attn_implementation
+[rank0]:     lazy_import_flash_attention(applicable_attn_implementation, force_import=True)
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_flash_attention_utils.py", line 136, in lazy_import_flash_attention
+[rank0]:     _flash_fn, _flash_varlen_fn, _pad_fn, _unpad_fn = _lazy_imports(implementation)
+[rank0]:                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_flash_attention_utils.py", line 83, in _lazy_imports
+[rank0]:     from flash_attn import flash_attn_func, flash_attn_varlen_func
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/flash_attn/__init__.py", line 3, in <module>
+[rank0]:     from flash_attn.flash_attn_interface import (
+[rank0]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/flash_attn/flash_attn_interface.py", line 15, in <module>
+[rank0]:     import flash_attn_2_cuda as flash_attn_gpu
+[rank0]: ImportError: /lib64/libc.so.6: version `GLIBC_2.32' not found (required by /leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/flash_attn_2_cuda.cpython-311-x86_64-linux-gnu.so)
+[rank0]:[W1002 16:56:42.968444256 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py", line 553, in <module>
+[rank1]:     main()
+[rank1]:   File "/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py", line 277, in main
+[rank1]:     model = build_foundation_model(
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/models/auto.py", line 109, in build_foundation_model
+[rank1]:     model = loader.load_model(
+[rank1]:             ^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/models/loader.py", line 173, in load_model
+[rank1]:     model = self.model_cls.from_config(**init_kwargs)
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 456, in from_config
+[rank1]:     return model_class._from_config(config, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+[rank1]:     return func(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 2311, in _from_config
+[rank1]:     model = cls(config, **kwargs)
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo/home/userexternal/fmorandi/TTT-NTP/hf_models/hf_qwen3/modeling_qwen3.py", line 581, in __init__
+[rank1]:     super().__init__(config)
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 2076, in __init__
+[rank1]:     self.config._attn_implementation_internal = self._check_and_adjust_attn_implementation(
+[rank1]:                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_utils.py", line 2691, in _check_and_adjust_attn_implementation
+[rank1]:     lazy_import_flash_attention(applicable_attn_implementation, force_import=True)
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_flash_attention_utils.py", line 136, in lazy_import_flash_attention
+[rank1]:     _flash_fn, _flash_varlen_fn, _pad_fn, _unpad_fn = _lazy_imports(implementation)
+[rank1]:                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/transformers/modeling_flash_attention_utils.py", line 83, in _lazy_imports
+[rank1]:     from flash_attn import flash_attn_func, flash_attn_varlen_func
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/flash_attn/__init__.py", line 3, in <module>
+[rank1]:     from flash_attn.flash_attn_interface import (
+[rank1]:   File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/flash_attn/flash_attn_interface.py", line 15, in <module>
+[rank1]:     import flash_attn_2_cuda as flash_attn_gpu
+[rank1]: ImportError: /lib64/libc.so.6: version `GLIBC_2.32' not found (required by /leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/flash_attn_2_cuda.cpython-311-x86_64-linux-gnu.so)
+W1002 16:56:55.876000 1670735 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1670755 closing signal SIGTERM
+E1002 16:56:55.940000 1670735 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 1670754) of binary: /leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/run.py", line 905, in <module>
+    main()
+  File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+tasks/train_torch.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-10-02_16:56:55
+  host      : lrdn3403.leonardo.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1670754)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: lrdn3403: task 0: Exited with exit code 1

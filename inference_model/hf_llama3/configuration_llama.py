@@ -187,6 +187,7 @@ class LlamaConfig(PretrainedConfig):
         mlp_bias=False,
         head_dim=None,
         ttt_layers=[0, 6, 12, 18, 24, 30],
+        ttt_method="ttt-ntp",
         ttt_mode=False,
         ttt_proj=True,
         ttt_proj_init="diag_shared",
@@ -223,6 +224,9 @@ class LlamaConfig(PretrainedConfig):
         self.mlp_bias = mlp_bias
         self.head_dim = head_dim if head_dim is not None else self.hidden_size // self.num_attention_heads
         self.ttt_layers = ttt_layers
+        if ttt_method not in ("ttt-ntp", "in-place-ttt", "standard-ft"):
+            raise ValueError("ttt_method must be ttt-ntp, in-place-ttt, or standard-ft")
+        self.ttt_method = ttt_method
         self.ttt_mode = ttt_mode
         self.ttt_proj = ttt_proj
         self.ttt_proj_init = ttt_proj_init

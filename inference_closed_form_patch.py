@@ -1,4 +1,4 @@
-"""Closed-form (ridge) fast-weight write for TTT-NTP inference. See eval_cf_ruler.sh."""
+"""Closed-form (ridge) evaluator for TTT-NTP, In-Place TTT, and standard fine-tuning."""
 from __future__ import annotations
 import argparse, glob, json, os, re, sys, time
 from pathlib import Path
@@ -133,12 +133,39 @@ def _attach_ttt_proj_weights(model, ckpt_path, ttt_modules):
     return n_attached
 
 
-def _compute_V_target(mlp, t_state_f32):
-    """Return W_proj^T t per position; identity fallback if the layer has no projection."""
+def _convolve_inplace_targets(mlp, target_states: torch.Tensor) -> torch.Tensor:
+    """Apply In-Place TTT's learned depthwise convolution independently per chunk.
+
+    Training pads each chunk on the right before Conv1d (which itself uses
+    padding=2). Reproduce that layout exactly before the CF ridge fit.
+    """
+    conv = getattr(mlp, "ttt_conv", None)
+    if conv is None:
+        raise ValueError("in-place-ttt checkpoint is missing mlp.ttt_conv")
+    chunk = int(getattr(mlp, "ttt_chunk", target_states.shape[1]))
+    batch, seq_len, hidden = target_states.shape
+    pad = (-seq_len) % chunk
+    if pad:
+        target_states = torch.cat(
+            [target_states, target_states.new_zeros(batch, pad, hidden)], dim=1
+        )
+    n_chunks = target_states.shape[1] // chunk
+    conv_input = target_states.reshape(batch, n_chunks, chunk, hidden)
+    conv_input = conv_input.permute(0, 1, 3, 2).reshape(batch * n_chunks, hidden, chunk)
+    conv_dtype = conv.weight.dtype
+    conv_output = conv(conv_input.to(conv_dtype)).to(torch.float32)
+    return conv_output.reshape(batch, n_chunks, hidden, chunk).permute(0, 1, 3, 2).reshape(batch, -1, hidden)[:, :seq_len]
+
+
+def _compute_V_target(mlp, t_state_f32, method: str):
+    """Return the projected target; In-Place TTT first applies its learned conv."""
+    if method == "in-place-ttt":
+        # t_state is (B, T, D) here. The next-token offset is applied below,
+        # jointly with the source activation offset.
+        t_state_f32 = _convolve_inplace_targets(mlp, t_state_f32)
     proj_mod = getattr(mlp, "ttt_proj", None)
     if proj_mod is not None:
-        W_proj = proj_mod.weight.data.to(torch.float32)   # (d_hidden, d_hidden)
-        return W_proj.T @ t_state_f32
+        return torch.matmul(t_state_f32, proj_mod.weight.data.to(torch.float32))
     return t_state_f32
 
 
@@ -146,7 +173,14 @@ def compute_and_apply_patch(model, prompt_ids, eta, lam, shift, verbose=False,
                             last_k=None, per_layer_eta=False, eta_target=0.1,
                             kv_reuse=False, norm_preserve=False):
     """Fit and apply the closed-form ridge write per TTT layer; returns (backups, past_kv)."""
+    method = getattr(model.config, "ttt_method", "ttt-ntp")
+    if method == "standard-ft":
+        # Same evaluator pipeline, but ordinary fine-tuning has no test-time write.
+        return {}, None
     ttt_modules = find_ttt_down_proj_modules(model)
+    if not ttt_modules:
+        # A base checkpoint has no TTT configuration and is the zero-shot baseline.
+        return {}, None
     captures = {}   # layer_idx -> x  (input to MLP, d_hidden)
     handles = []
 
@@ -189,8 +223,8 @@ def compute_and_apply_patch(model, prompt_ids, eta, lam, shift, verbose=False,
         else:
             X_full = inp_all[:, :-shift]                                # (d_inter, T-shift)
 
-        t_state_f32 = x[0].T.to(torch.float32)                      # (d_hidden, T)
-        V_all = _compute_V_target(mlp, t_state_f32)                 # (d_hidden, T)
+        t_state_f32 = x.to(torch.float32)                          # (B, T, d_hidden)
+        V_all = _compute_V_target(mlp, t_state_f32, method)[0].T    # (d_hidden, T)
         Y_full = V_all if shift == 0 else V_all[:, shift:]          # (d_hidden, T-shift)
         del t_state_f32, V_all
 
@@ -377,15 +411,22 @@ def main():
         ).to(args.device).eval()
         input_device = args.device
 
-    print(f"[cf-patch] model class: {type(model).__name__}")
+    method = getattr(model.config, "ttt_method", "ttt-ntp")
     ttt_modules = find_ttt_down_proj_modules(model)
-    n_trainable = len(ttt_modules)
+    # Plain pretrained checkpoints have no TTT fields/layers: evaluate them as
+    # the shared no-write zero-shot baseline instead of requiring a patch.
+    if not ttt_modules:
+        method = "standard-ft"
+    print(f"[cf-patch] model class: {type(model).__name__}; method={method}")
+    n_trainable = 0 if method == "standard-ft" else len(ttt_modules)
     print(f"[cf-patch] num TTT down_proj layers: {n_trainable}")
-    if n_trainable == 0:
+    if n_trainable == 0 and method != "standard-ft":
         print("[cf-patch] ERROR: no TTT layers found"); sys.exit(1)
 
-    n_attached = _attach_ttt_proj_weights(model, args.ckpt, ttt_modules)
-    if n_attached == 0:
+    n_attached = _attach_ttt_proj_weights(model, args.ckpt, ttt_modules) if method != "standard-ft" else 0
+    if method == "standard-ft":
+        print("[cf-patch] standard-ft: no test-time write will be applied")
+    elif n_attached == 0:
         print("[cf-patch] WARNING: no ttt_proj weights found in ckpt -- target falls back to identity")
     else:
         print(f"[cf-patch] attached W_proj weights on {n_attached}/{n_trainable} TTT layers")
@@ -395,7 +436,9 @@ def main():
         inner._cf_patch_vanilla_mode = True
 
     n_params = model_param_count(model)
-    w0 = ttt_modules[0][1].weight
+    # standard-ft may deliberately omit ttt_layers; its baseline dimensions
+    # still let the shared evaluator report a sensible no-write FLOP summary.
+    w0 = (ttt_modules[0][1] if ttt_modules else model.model.layers[0].mlp.down_proj).weight
     d_hidden, d_inter = w0.shape
     print(f"[cf-patch] d_hidden={d_hidden} d_inter={d_inter}")
     print(f"[cf-patch] eta={args.eta}  lam={args.lam}  shift={args.shift}  norm_preserve={args.norm_preserve}")
@@ -493,7 +536,7 @@ def main():
     else:
         flops_info = {"note": "no samples"}
 
-    out = {"config": vars(args), "summary": summary, "flops": flops_info,
+    out = {"config": vars(args), "method": method, "summary": summary, "flops": flops_info,
            "n_ttt_layers": n_trainable, "n_total_params_nonembed": n_params}
     with open(os.path.join(args.out_dir, "summary.json"), "w") as f:
         json.dump(out, f, indent=2)

@@ -1,0 +1,199 @@
+Output directory: /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_4b_base_ttt_57948500
+Wed Sep 16 11:59:49 2026       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.274.02             Driver Version: 535.274.02   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM-64GB           On  | 00000000:1D:00.0 Off |                    0 |
+| N/A   43C    P0              64W / 470W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-SXM-64GB           On  | 00000000:56:00.0 Off |                    0 |
+| N/A   44C    P0              62W / 473W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100-SXM-64GB           On  | 00000000:8F:00.0 Off |                    0 |
+| N/A   43C    P0              63W / 466W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100-SXM-64GB           On  | 00000000:C8:00.0 Off |                    0 |
+| N/A   43C    P0              61W / 458W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/ops/__init__.py:41] 09/16/2026 12:02:38 >> ⚠️ Skip applying ops patch. Using huggingface transformers backend.
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/__init__.py:32] 09/16/2026 12:02:38 >> ❌ veomni_patch is not available
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/__init__.py:34] 09/16/2026 12:02:38 >> 
+========== Environment Variables ==========
+MODELING_BACKEND=hf (source=env)
+USE_GROUP_GEMM=1 (source=default)
+USE_LIGER_KERNEL=1 (source=default)
+===========================================
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/__init__.py:35] 09/16/2026 12:02:38 >> 
+=========== OPS ============
+_fused_moe_forward = None
+_flash_attention_forward = None
+_cross_entropy = None
+==============================
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:176] 09/16/2026 12:02:42 >> Process_group timeout: None
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:176] 09/16/2026 12:02:42 >> Process_group timeout: None
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:176] 09/16/2026 12:02:42 >> Process_group timeout: None
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:176] 09/16/2026 12:02:42 >> Process_group timeout: None
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:184] 09/16/2026 12:02:42 >> Process rank: 1, world size: 4
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:184] 09/16/2026 12:02:42 >> Process rank: 3, world size: 4
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:184] 09/16/2026 12:02:42 >> Process rank: 2, world size: 4
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/utils/arguments.py:622] 09/16/2026 12:02:42 >> Set gradient accumulation to 16.
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:184] 09/16/2026 12:02:42 >> Process rank: 0, world size: 4
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:185] 09/16/2026 12:02:42 >> {
+  "model": {
+    "config_path": "/leonardo_work/IscrB_MOSAIC/franci/huggingface/models/Qwen3-4B-Base",
+    "model_path": "/leonardo_work/IscrB_MOSAIC/franci/huggingface/models/Qwen3-4B-Base",
+    "tokenizer_path": "/leonardo_work/IscrB_MOSAIC/franci/huggingface/models/Qwen3-4B-Base",
+    "foundation": {
+      "ttt_mode": true,
+      "ttt_layers": [
+        0,
+        6,
+        12,
+        18,
+        24,
+        30
+      ],
+      "ttt_proj": true,
+      "ttt_proj_init": "diag_shared",
+      "ttt_lr": 3.0,
+      "ttt_chunk": 1024,
+      "ttt_inner_opt": "specnorm",
+      "ttt_norm_preserve": false,
+      "ttt_target": "hidden_states",
+      "ttt_conv": false,
+      "ttt_predict_mode": "next"
+    },
+    "encoders": {},
+    "decoders": {},
+    "input_encoder": "encoder",
+    "output_encoder": "decoder",
+    "encode_target": false,
+    "attn_implementation": "flash_attention_2",
+    "moe_implementation": null,
+    "basic_modules": []
+  },
+  "data": {
+    "train_path": "/leonardo_work/IscrB_MOSAIC/fwp/prolong/arxiv.jsonl",
+    "train_size": 20000000000,
+    "data_type": "plaintext",
+    "dataloader_type": "native",
+    "datasets_type": "iterable",
+    "multisource_datasets_type": "interleave",
+    "enable_multisource": false,
+    "source_name": null,
+    "data_tag": "default",
+    "drop_resume_buffer": false,
+    "text_keys": "content_split",
+    "image_keys": "images",
+    "chat_template": "default",
+    "max_seq_len": 32768,
+    "num_workers": 1,
+    "prefetch_factor": 2,
+    "drop_last": true,
+    "pin_memory": true,
+    "shuffle_shard_nums": 1,
+    "split_nums": 1,
+    "predownload_factor": 0.5,
+    "silent_exception": false
+  },
+  "train": {
+    "output_dir": "/leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_4b_base_ttt_57948500",
+    "vit_lr": 5e-05,
+    "train_architecture": "full",
+    "lr": 5e-06,
+    "lr_min": 1e-07,
+    "lr_start": 0.0,
+    "weight_decay": 0.1,
+    "no_decay_modules": [],
+    "no_decay_params": [],
+    "optimizer": "adamw",
+    "max_grad_norm": 1.0,
+    "micro_batch_size": 1,
+    "global_batch_size": 64,
+    "num_train_epochs": 1,
+    "rmpad": false,
+    "rmpad_with_pos_ids": false,
+    "dyn_bsz": false,
+    "dyn_bsz_margin": 0,
+    "dyn_bsz_runtime": "worker",
+    "dyn_bsz_buffer_size": 200,
+    "bsz_warmup_ratio": 0,
+    "bsz_warmup_init_mbtoken": 200,
+    "lr_warmup_ratio": 0.02,
+    "lr_decay_style": "cosine",
+    "lr_decay_ratio": 0.9,
+    "enable_mixed_precision": true,
+    "enable_gradient_checkpointing": true,
+    "enable_reentrant": false,
+    "enable_full_shard": true,
+    "enable_forward_prefetch": true,
+    "enable_fsdp_offload": false,
+    "enable_activation_offload": false,
+    "activation_gpu_limit": 0.0,
+    "init_device": "meta",
+    "broadcast_model_weights_from_rank0": true,
+    "enable_full_determinism": false,
+    "empty_cache_steps": 500,
+    "gc_steps": 500,
+    "data_parallel_mode": "fsdp2",
+    "data_parallel_replicate_size": 1,
+    "data_parallel_shard_size": 4,
+    "tensor_parallel_size": 1,
+    "expert_parallel_size": 1,
+    "ep_outside": false,
+    "pipeline_parallel_size": 1,
+    "ulysses_parallel_size": 1,
+    "context_parallel_size": 1,
+    "ckpt_manager": "dcp",
+    "save_async": false,
+    "load_checkpoint_path": null,
+    "save_steps": 0,
+    "save_epochs": 1,
+    "save_hf_weights": true,
+    "seed": 42,
+    "enable_compile": false,
+    "use_wandb": false,
+    "wandb_project": "VeOmni",
+    "wandb_name": null,
+    "enable_profiling": false,
+    "profile_start_step": 1,
+    "profile_end_step": 2,
+    "profile_trace_dir": "./trace",
+    "profile_record_shapes": true,
+    "profile_profile_memory": true,
+    "profile_with_stack": true,
+    "profile_rank0_only": true,
+    "max_steps": 1000,
+    "async_enabled": false
+  }
+}
+[WARNING|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/utils/arguments.py:926] 09/16/2026 12:02:43 >> Recommend to use hdfs path or hdfs_fuse path as the output path.
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/distributed/parallel_state.py:479] 09/16/2026 12:02:43 >> Initializing parallel state... dp_size 4, dp_replicate_size 1, dp_shard_size 4,tp_size 1, pp_size 1, ep_size 1, cp_size 1, ulysses_size 1
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/distributed/parallel_state.py:550] 09/16/2026 12:02:43 >> Device mesh: DeviceMesh('cuda', [0, 1, 2, 3], mesh_dim_names=('dp_shard',))
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/distributed/parallel_state.py:551] 09/16/2026 12:02:43 >> EP FSDP device mesh: None
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:208] 09/16/2026 12:02:43 >> Prepare data
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/data/dataset.py:310] 09/16/2026 12:02:45 >> Start building iterative dataset
+[WARNING|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/utils/arguments.py:687] 09/16/2026 12:03:29 >> Set train_steps to 1000. It should be for debug purpose only.
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/data/data_loader.py:89] 09/16/2026 12:03:29 >> train_steps: 1000, max_seq_len: 32768, use_rmpad: False, bsz_warmup_steps: 0, bsz_warmup_init_mbtoken: 200, token_micro_bsz: 32768, num_micro_batch: 16, micro_batch_size: 1, global_batch_size: 64, dp_size: 4, sp_size: 1.
+[INFO|/leonardo/home/userexternal/fmorandi/TTT-NTP/tasks/train_torch.py:248] 09/16/2026 12:03:29 >> Prepare model
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/models/loader.py:49] 09/16/2026 12:03:29 >> [CONFIG] Force loading model config from Huggingface.
+[INFO|/leonardo_work/IscrB_MOSAIC/franci/envs/inplacettt/lib/python3.11/site-packages/veomni/models/loader.py:155] 09/16/2026 12:03:30 >> Loading model from Huggingface modeling.
+init_device: meta
+empty_init: True
+weights_path: /leonardo_work/IscrB_MOSAIC/franci/huggingface/models/Qwen3-4B-Base

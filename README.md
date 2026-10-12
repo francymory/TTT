@@ -75,7 +75,14 @@ One config per backbone lives in `configs/pretrain/` (`qwen3_4b`, `qwen3_0p6b`, 
 bash scripts/train_ttt_ntp.sh qwen3_4b BASE=/path/to/Qwen3-4B-Base DATA=/path/to/long-data-collections OUT=/path/out
 # any yaml value can be overridden on the command line, e.g.
 bash scripts/train_ttt_ntp.sh qwen3_4b BASE=... DATA=... OUT=... --train.seed 1 --train.micro_batch_size 1
+
+# Select a training method. `standard-ft` uses the same TTT-capable model code,
+# but disables TTT layers and performs ordinary next-token fine-tuning.
+bash scripts/train_ttt_ntp.sh qwen3_0p6b BASE=... DATA=... OUT=... METHOD=in-place-ttt
+bash scripts/train_ttt_ntp.sh qwen3_0p6b BASE=... DATA=... OUT=... METHOD=standard-ft
 ```
+
+`METHOD` accepts `ttt-ntp` (default), `in-place-ttt`, and `standard-ft`. In-place TTT adds a learned depthwise target convolution and retains the next-token-prediction training loss; its configuration and convolution weights are saved in the HF checkpoint.
 
 The launcher is a thin wrapper around `train.sh tasks/train_torch.py configs/pretrain/<backbone>.yaml`, so the underlying VeOmni command works too. The TTT recipe is the `model.foundation` block of the yaml:
 
@@ -112,7 +119,7 @@ CF_NORM_PRESERVE=1 CKPT=OUT/checkpoints/global_step_1000/hf_ckpt \
   bash eval_cf_ruler.sh
 ```
 
-Defaults are the paper's Table-7 settings (`eta=0.1`, per-layer cap `0.1`, `lam=1.0`, fit on the last 8192 prefill tokens, row-norm preserved). The summary reports the closed-form (`patch`) scores.
+Defaults are the paper's Table-7 settings (`eta=0.1`, per-layer cap `0.1`, `lam=1.0`, fit on the last 8192 prefill tokens, row-norm preserved). The summary reports the closed-form (`patch`) scores. The same command evaluates every method: it uses the normal next-token target for `ttt-ntp`, applies the learned chunk-wise target convolution before the ridge fit for `in-place-ttt`, and applies no write for `standard-ft`.
 
 ## 📚 Citation
 

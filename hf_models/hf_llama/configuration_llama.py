@@ -187,6 +187,7 @@ class LlamaConfig(PretrainedConfig):
         mlp_bias=False,
         head_dim=None,
         ttt_layers=[0, 6, 12, 18, 24, 30],
+        ttt_method="ttt-ntp",
         ttt_mode=True,
         ttt_proj=True,
         ttt_proj_init="small",        # "small" (Llama release) | "diag_shared" | "identity"
@@ -223,6 +224,9 @@ class LlamaConfig(PretrainedConfig):
         self.mlp_bias = mlp_bias
         self.head_dim = head_dim if head_dim is not None else self.hidden_size // self.num_attention_heads
         self.ttt_layers = ttt_layers
+        if ttt_method not in ("ttt-ntp", "in-place-ttt", "standard-ft"):
+            raise ValueError("ttt_method must be ttt-ntp, in-place-ttt, or standard-ft")
+        self.ttt_method = ttt_method
         self.ttt_mode = ttt_mode
         self.ttt_proj = ttt_proj
         if ttt_proj_init not in ("diag_shared", "small", "identity"):
@@ -236,8 +240,8 @@ class LlamaConfig(PretrainedConfig):
         self.ttt_norm_preserve = bool(ttt_norm_preserve)
         if ttt_target != "hidden_states":
             raise ValueError("ttt_target must be 'hidden_states' (TTT-NTP)")
-        if ttt_conv:
-            raise ValueError("ttt_conv must be false (TTT-NTP has no convolutional target)")
+        if ttt_conv and ttt_method != "in-place-ttt":
+            raise ValueError("ttt_conv is only supported by in-place-ttt")
         if ttt_predict_mode != "next":
             raise ValueError("ttt_predict_mode must be 'next' (TTT-NTP)")
         self.ttt_target = ttt_target

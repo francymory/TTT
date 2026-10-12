@@ -161,67 +161,56 @@ class LlamaMLP(nn.Module):
         self.down_proj = nn.Linear(self.intermediate_size, self.hidden_size, bias=config.mlp_bias)
         self.act_fn = ACT2FN[config.hidden_act]
         self.layer_idx = -1 if layer_idx is None else layer_idx
-        self.is_ttt = (
-            getattr(config, "ttt_mode", False)
-            and self.layer_idx in getattr(config, "ttt_layers", [])
-        )
+        self.is_ttt = getattr(config, "ttt_mode", False) and self.layer_idx in getattr(config, "ttt_layers", [])
+        self.ttt_method = getattr(config, "ttt_method", "ttt-ntp")
         if self.is_ttt:
             self.ttt_chunk = int(getattr(config, "ttt_chunk", 1024))
             self.ttt_lr = float(getattr(config, "ttt_lr", 0.3))
-            self.ttt_inner_opt = getattr(config, "ttt_inner_opt", "sgd")
-            if self.ttt_inner_opt not in ("sgd", "specnorm"):
-                raise ValueError("ttt_inner_opt must be 'sgd' or 'specnorm'")
-            self.ttt_norm_preserve = bool(getattr(config, "ttt_norm_preserve", False))
             self.ttt_proj = nn.Linear(self.hidden_size, self.hidden_size, bias=False)
+            if self.ttt_method == "in-place-ttt":
+                self.ttt_conv = nn.Conv1d(self.hidden_size, self.hidden_size, kernel_size=5, padding=2, groups=self.hidden_size, bias=False)
+            else:
+                self.ttt_inner_opt = getattr(config, "ttt_inner_opt", "sgd")
+                if self.ttt_inner_opt not in ("sgd", "specnorm"):
+                    raise ValueError("ttt_inner_opt must be 'sgd' or 'specnorm'")
+                self.ttt_norm_preserve = bool(getattr(config, "ttt_norm_preserve", False))
 
     def padding(self, x):
-        """Right-pad the sequence to a multiple of ttt_chunk, then reshape to
-        (batch, n_chunks, chunk, dim). Non-TTT layers pass through unchanged."""
         if not hasattr(self, "ttt_chunk"):
             return x
         if x.shape[1] % self.ttt_chunk != 0:
-            padding_embeddings = torch.zeros(
-                [x.shape[0], self.ttt_chunk - x.shape[1] % self.ttt_chunk, x.shape[2]],
-                device=x.device,
-                dtype=x.dtype,
-            )
+            padding_embeddings = torch.zeros([x.shape[0], self.ttt_chunk - x.shape[1] % self.ttt_chunk, x.shape[2]], device=x.device, dtype=x.dtype)
             x = torch.cat([x, padding_embeddings], dim=1)
         return rearrange(x, "b (t c) d -> b t c d", c=self.ttt_chunk)
 
     def forward(self, x, t: Optional[torch.Tensor] = None):
         h = self.act_fn(self.gate_proj(x)) * self.up_proj(x)
-        if t is None or not getattr(self, "is_ttt", False):
+        if t is None or not self.is_ttt:
             return self.down_proj(h)
         t = self.padding(t)
         h_padded = self.padding(h)
-        bs, chunk_num, chunk_size, _ = t.shape
-        _h_src = h_padded[:, :-1, :-1, :]   # drop last chunk + last tok / chunk
-        _t_tgt = t[:, :-1, 1:, :]           # drop last chunk + first tok / chunk
-        d_down_proj = contract(
-            "b t c h, b t c d, d e -> b t e h",
-            _h_src, _t_tgt, self.ttt_proj.weight,
-        )
-        if self.ttt_inner_opt == "specnorm":
-            g32 = d_down_proj.float()
-            v = torch.nn.functional.normalize(
-                g32.mean(dim=-2, keepdim=True).transpose(-2, -1), dim=-2, eps=1e-8
-            )
-            for _ in range(5):
-                u = torch.nn.functional.normalize(g32 @ v, dim=-2, eps=1e-8)
-                v = torch.nn.functional.normalize(g32.transpose(-2, -1) @ u, dim=-2, eps=1e-8)
-            sigma = (u.transpose(-2, -1) @ g32 @ v).clamp_min(1e-6)
-            d_down_proj = (g32 / sigma).to(d_down_proj.dtype)
-        d_down_proj = torch.cat(
-            [
-                repeat(self.down_proj.weight, "d h -> b 1 d h", b=bs),
-                d_down_proj * self.ttt_lr,
-            ],
-            dim=1,
-        )
+        bs = t.shape[0]
+        if self.ttt_method == "in-place-ttt":
+            # In-Place TTT: convolve the NTP target, then use its next-token shift for the in-place MLP write.
+            t = self.ttt_conv(t.transpose(-1, -2).reshape(-1, self.hidden_size, self.ttt_chunk)).transpose(-1, -2).reshape_as(t)
+            d_down_proj = contract("b t c h, b t c d, d e -> b t e h", h_padded[:, :-1, :-1], t[:, :-1, 1:], self.ttt_proj.weight)
+            d_down_proj = torch.cat([repeat(self.down_proj.weight, "d h -> b 1 d h", b=bs), d_down_proj * self.ttt_lr], dim=1)
+        else:
+            # TTT-NTP: source state at token i predicts the target state at i + 1.
+            d_down_proj = contract("b t c h, b t c d, d e -> b t e h", h_padded[:, :-1, :-1], t[:, :-1, 1:], self.ttt_proj.weight)
+            if self.ttt_inner_opt == "specnorm":
+                g32 = d_down_proj.float()
+                v = torch.nn.functional.normalize(g32.mean(dim=-2, keepdim=True).transpose(-2, -1), dim=-2, eps=1e-8)
+                for _ in range(5):
+                    u = torch.nn.functional.normalize(g32 @ v, dim=-2, eps=1e-8)
+                    v = torch.nn.functional.normalize(g32.transpose(-2, -1) @ u, dim=-2, eps=1e-8)
+                sigma = (u.transpose(-2, -1) @ g32 @ v).clamp_min(1e-6)
+                d_down_proj = (g32 / sigma).to(d_down_proj.dtype)
+            d_down_proj = torch.cat([repeat(self.down_proj.weight, "d h -> b 1 d h", b=bs), d_down_proj * self.ttt_lr], dim=1)
         d_down_proj_sum = d_down_proj.cumsum(dim=1)
-        if getattr(self, "ttt_norm_preserve", False):
-            init_norm = self.down_proj.weight.norm(dim=-1, keepdim=True)            # (d_out, 1)
-            cur_norm = d_down_proj_sum.norm(dim=-1, keepdim=True).clamp_min(1e-5)   # (b, T, d_out, 1)
+        if self.ttt_method != "in-place-ttt" and getattr(self, "ttt_norm_preserve", False):
+            init_norm = self.down_proj.weight.norm(dim=-1, keepdim=True)
+            cur_norm = d_down_proj_sum.norm(dim=-1, keepdim=True).clamp_min(1e-5)
             d_down_proj_sum = d_down_proj_sum / cur_norm * init_norm
         down_proj = contract("b t d h, b t c h -> b t c d", d_down_proj_sum, h_padded)
         return rearrange(down_proj, "b t c d -> b (t c) d")[:, : x.shape[1], :]
@@ -470,6 +459,10 @@ class LlamaPreTrainedModel(PreTrainedModel):
                     weight_data[indices, indices] = 1.0
             if module.bias is not None:
                 torch.nn.init.zeros_(module.bias)
+        elif isinstance(module, nn.Conv1d):
+            module.weight.data.zero_()
+            if module.bias is not None:
+                module.bias.data.zero_()
         elif isinstance(module, nn.Embedding):
             module.weight.data.normal_(mean=0.0, std=std)
             if module.padding_idx is not None:

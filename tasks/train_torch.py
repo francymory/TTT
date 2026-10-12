@@ -113,6 +113,29 @@ def _pop_dict_cli_arg(arg_name: str) -> Dict[str, Any] | None:
     return parsed
 
 
+def _pop_string_cli_arg(arg_name: str) -> str | None:
+    if arg_name not in sys.argv:
+        return None
+    idx = sys.argv.index(arg_name)
+    if idx + 1 >= len(sys.argv):
+        raise ValueError(f"{arg_name} expects a value.")
+    value = sys.argv[idx + 1]
+    del sys.argv[idx : idx + 2]
+    return value
+
+
+def _configure_ttt_method(foundation: Dict[str, Any], method: str | None) -> str:
+    method = method or foundation.get("ttt_method", "ttt-ntp")
+    method = {"inplace-ttt": "in-place-ttt", "standard_ft": "standard-ft"}.get(method, method)
+    if method not in {"ttt-ntp", "in-place-ttt", "standard-ft"}:
+        raise ValueError("--method must be one of: ttt-ntp, in-place-ttt, standard-ft")
+    foundation["ttt_method"] = method
+    foundation["ttt_mode"] = method != "standard-ft"
+    if method == "in-place-ttt":
+        foundation["ttt_conv"] = True
+    return method
+
+
 def _compute_train_steps_compat(args, dataset_length):
     if hasattr(args.train, "compute_train_steps"):
         args.train.compute_train_steps(args.data.max_seq_len, args.data.train_size, dataset_length)
@@ -168,6 +191,7 @@ def _build_dataloader_compat(args, train_dataset, train_steps):
 
 def main():
     foundation_override = _pop_dict_cli_arg("--model.foundation")
+    method_override = _pop_string_cli_arg("--method")
 
     nccl_timeout = os.getenv("NCCL_TIMEOUT", None)
     pg_nccl_timeout = None
@@ -181,6 +205,10 @@ def main():
         if args.model.foundation is None:
             args.model.foundation = {}
         args.model.foundation.update(foundation_override)
+    if args.model.foundation is None:
+        args.model.foundation = {}
+    selected_method = _configure_ttt_method(args.model.foundation, method_override)
+    logger.info_rank0(f"TTT training method: {selected_method}")
     logger.info(f"Process rank: {args.train.global_rank}, world size: {args.train.world_size}")
     logger.info_rank0(json.dumps(asdict(args), indent=2))
     get_torch_device().set_device(f"{get_device_type()}:{args.train.local_rank}")

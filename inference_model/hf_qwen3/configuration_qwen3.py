@@ -181,6 +181,7 @@ class Qwen3Config(PretrainedConfig):
         layer_types=None,
         attention_dropout=0.0,
         ttt_layers=[0, 6, 12, 18, 24, 30],
+        ttt_method="ttt-ntp",
         ttt_mode=False,
         ttt_proj=True,
         ttt_proj_init="diag_shared",
@@ -234,6 +235,9 @@ class Qwen3Config(PretrainedConfig):
         layer_type_validation(self.layer_types, self.num_hidden_layers)
 
         self.ttt_layers = ttt_layers
+        if ttt_method not in ("ttt-ntp", "in-place-ttt", "standard-ft"):
+            raise ValueError("ttt_method must be ttt-ntp, in-place-ttt, or standard-ft")
+        self.ttt_method = ttt_method
         self.ttt_mode = ttt_mode
         self.ttt_proj = ttt_proj
         self.ttt_proj_init = ttt_proj_init

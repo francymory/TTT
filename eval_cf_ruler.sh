@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Closed-form (CF) RULER Full-13 evaluation for TTT-NTP.
+# Closed-form (CF) RULER Full-13 evaluation shared by TTT-NTP, In-Place TTT, and standard fine-tuning.
 #
 # Per context length: (1) OpenCompass materializes the RULER prompts and the
 # model's own generations, sharded over $GPUS; (2) one CF process per GPU fits
@@ -57,13 +57,15 @@ if [ -z "${MODEL_ABBR:-}" ]; then
 fi
 : "${OUT_DIR:=${PROJECT_DIR}/results/cf_ruler/${MODEL_ABBR}}"
 
-# Validate that ttt_layers survived in config.json (required to locate adapted layers).
+# TTT methods require their adapted layer list. standard-ft is also evaluated
+# by this launcher, but intentionally has no fast-weight write.
+TTT_METHOD=$(python3 -c "import json; print(json.load(open('${CKPT}/config.json')).get('ttt_method', 'ttt-ntp'))")
 HAS_TTT=$(python3 -c "import json; c=json.load(open('${CKPT}/config.json')); print(1 if c.get('ttt_layers') else 0)")
 if [ "$HAS_TTT" != "1" ]; then
-  echo "ERROR: config.json has no 'ttt_layers' field — the closed-form patch cannot" >&2
-  echo "       locate the adapted MLP down-projections. Re-export the checkpoint" >&2
-  echo "       WITHOUT stripping ttt_* fields, or add ttt_layers back to config.json." >&2
-  exit 1
+  # A plain base checkpoint is the zero-shot/no-write baseline. It still uses
+  # this evaluator's prompt generation, batch schedule, sharding, and scorer.
+  TTT_METHOD="standard-ft"
+  echo "[eval] no ttt_layers in checkpoint; treating it as zero-shot/no-write."
 fi
 
 # Warn about lengths exceeding the model's position window.
@@ -93,6 +95,10 @@ echo "=============================================================="
 
 export PYTHONPATH="${PROJECT_DIR}:${CFG_DIR}:${PYTHONPATH:-}"
 export COMPASS_DATA_CACHE="${COMPASS_DATA_CACHE:-/tmp/opencompass-data}"
+# All methods use this same CF RULER pipeline. For in-place-ttt the patcher
+# applies the checkpoint's learned target convolution before fitting its ridge
+# write; standard-ft intentionally performs no write.
+echo "[eval] ttt_method=$TTT_METHOD; using the shared closed-form evaluator."
 export TOKENIZERS_PARALLELISM=false
 mkdir -p "$COMPASS_DATA_CACHE"
 
@@ -101,6 +107,7 @@ mkdir -p "$COMPASS_DATA_CACHE"
 : "${BATCH_8k:=16}"
 : "${BATCH_16k:=8}"
 : "${BATCH_32k:=4}"
+: "${BATCH_64k:=1}"
 
 # models.py is regenerated PER LENGTH below with the appropriate batch_size.
 # (the shared file written here is only a placeholder; eval_config/ruler_${len}.py
@@ -129,6 +136,7 @@ for len in $LENGTHS; do
       8k)  BS="${BATCH_8k}" ;;
       16k) BS="${BATCH_16k}" ;;
       32k) BS="${BATCH_32k}" ;;
+      64k) BS="${BATCH_64k}" ;;
       *)   BS=1 ;;
     esac
     echo "[phase1] using batch_size=${BS} for ${len}"
@@ -240,9 +248,17 @@ main()
   fi
 
   # ---- Merge shards: concat per-task samples, recompute averages ----
-  python3 - "${OUT_DIR}/${len}" "${shard_root}" <<'PY'
+  python3 - "${OUT_DIR}/${len}" "${shard_root}" "${len}" <<'PY'
 import glob, json, os, sys
-len_dir, shard_root = sys.argv[1], sys.argv[2]
+len_dir, shard_root, length = sys.argv[1:4]
+
+FULL13 = [
+    "niah_single_1", "niah_single_2", "niah_single_3",
+    "niah_multikey_1", "niah_multikey_2", "niah_multikey_3",
+    "niah_multiquery", "niah_multivalue",
+    "vt", "fwe", "cwe",
+    "qa_squad", "qa_hotpotqa",
+]
 
 # Gather per-task sample lists across all shard subdirs.
 per_task = {}          # task -> list of sample dicts
@@ -264,10 +280,19 @@ for task, samples in per_task.items():
     with open(os.path.join(len_dir, f"{task}.json"), "w") as f:
         json.dump({"task": task, "n": n, "patch_avg": p, "samples": samples}, f, indent=2)
 
+present = [task for task in FULL13 if task in summary]
+missing = [task for task in FULL13 if task not in summary]
+full13 = sum(summary[task]["patch"] for task in present) / len(present) if present else None
+
 with open(os.path.join(len_dir, "summary.json"), "w") as f:
     json.dump({"summary": summary, "n_tasks": len(summary),
+               "full13": full13, "missing_full13": missing,
                "merged_from_shards": True}, f, indent=2)
 print(f"  merged {len(summary)} tasks -> {os.path.join(len_dir, 'summary.json')}")
+if missing:
+    print(f"RULER {length} Full-13 incomplete: {len(present)}/13 tasks; missing={missing}")
+else:
+    print(f"RULER {length} Full-13 closed-form score: {full13:.2f}")
 PY
 done
 
@@ -287,12 +312,18 @@ FULL13 = [
     "qa_squad", "qa_hotpotqa",
 ]
 
-agg = {"out_dir": out_dir, "lengths": {}, "full13_avg": {}}
+PAPER_LENGTHS = ["4k", "8k", "16k", "32k"]
+agg = {
+    "out_dir": out_dir,
+    "lengths": {},
+    "full13_avg": {},
+    "all_lengths_avg": {},
+}
 print("\n========= CLOSED-FORM RULER Full-13 =========")
 print(f"{'length':>8s} {'n_tasks':>8s} {'patch':>9s}")
 print("-" * 30)
 
-patch_means = []
+patch_means = {}
 for length in lengths:
     sp = os.path.join(out_dir, length, "summary.json")
     if not os.path.isfile(sp):
@@ -313,14 +344,23 @@ for length in lengths:
         "per_task": {t: summ[t] for t in present},
         "missing": [t for t in FULL13 if t not in summ],
     }
-    patch_means.append(p)
+    patch_means[length] = p
     print(f"{length:>8s} {len(present):>8d} {p:>9.2f}")
 
 if patch_means:
-    full13_avg = sum(patch_means) / len(patch_means)
-    agg["full13_avg"]["patch"] = full13_avg
+    all_avg = sum(patch_means.values()) / len(patch_means)
+    agg["all_lengths_avg"]["patch"] = all_avg
+    agg["all_lengths_avg"]["lengths"] = list(patch_means)
+
+    paper_scores = [patch_means[length] for length in PAPER_LENGTHS if length in patch_means]
     print("-" * 30)
-    print(f"{'AVG':>8s} {'':>8s} {full13_avg:>9.2f}")
+    if paper_scores:
+        paper_avg = sum(paper_scores) / len(paper_scores)
+        agg["full13_avg"]["patch"] = paper_avg
+        agg["full13_avg"]["lengths"] = [length for length in PAPER_LENGTHS if length in patch_means]
+        print(f"{'AVG':>8s} {'':>8s} {paper_avg:>9.2f}  (paper: 4k-32k)")
+    if list(patch_means) != PAPER_LENGTHS:
+        print(f"{'ALL AVG':>8s} {'':>8s} {all_avg:>9.2f}  ({', '.join(patch_means)})")
 
 with open(os.path.join(out_dir, "ruler_cf_summary.json"), "w") as f:
     json.dump(agg, f, indent=2)

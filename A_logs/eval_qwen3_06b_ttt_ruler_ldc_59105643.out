@@ -1,0 +1,254 @@
+Visible GPUs: 2; device: NVIDIA A100-SXM-64GB
+Checkpoint: /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_ldc_59100405/checkpoints/global_step_100/hf_ckpt
+RULER lengths: 4k 8k 16k 32k 64k; 100 samples per task, 13 tasks per length, closed-form TTT
+Results: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643
+==============================================================
+CF-RULER  model=qwen3_06b_base_ttt_57998376_step100
+  ckpt     = /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_ldc_59100405/checkpoints/global_step_100/hf_ckpt
+  lengths  = 4k 8k 16k 32k 64k   (serial)
+  gpus     = 0,1   (data parallel, 2 cards per length)
+  samples  = 100 (score <= 100)
+  out_dir  = /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643
+  CF: eta=0.1 eta_target=0.1 lam=1.0 shift=1 last_k=8192 norm_preserve=1
+==============================================================
+
+############## length=4k ##############
+[phase1] using batch_size=8 for 4k
+[phase1] generating RULER prompts for 4k on GPUs 0,1
+10/01 17:10:11 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/4k/20261001_171011
+10/01 17:10:12 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+10/01 17:10:12 - OpenCompass - INFO - Partitioned into 2 tasks.
+10/01 17:10:12 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+10/01 17:10:12 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+10/01 17:10:12 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_4k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_4k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_4k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+4k         -          -         -       -
+10/01 17:17:08 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/4k/20261001_171011/summary/summary_20261001_171011.txt
+10/01 17:17:08 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/4k/20261001_171011/summary/summary_20261001_171011.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 4k | - | - | - | - |
+
+10/01 17:17:08 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/4k/20261001_171011/summary/summary_20261001_171011.md
+[phase2] closed-form patch on 4k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/4k/20261001_171011/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/4k/summary.json
+RULER 4k Full-13 closed-form score: 81.74
+
+############## length=8k ##############
+[phase1] using batch_size=4 for 8k
+[phase1] generating RULER prompts for 8k on GPUs 0,1
+10/01 17:31:07 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/8k/20261001_173107
+10/01 17:31:08 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+10/01 17:31:08 - OpenCompass - INFO - Partitioned into 2 tasks.
+10/01 17:31:08 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+10/01 17:31:08 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+10/01 17:31:08 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_8k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_8k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_8k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+8k         -          -         -       -
+10/01 17:45:00 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/8k/20261001_173107/summary/summary_20261001_173107.txt
+10/01 17:45:00 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/8k/20261001_173107/summary/summary_20261001_173107.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 8k | - | - | - | - |
+
+10/01 17:45:00 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/8k/20261001_173107/summary/summary_20261001_173107.md
+[phase2] closed-form patch on 8k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/8k/20261001_173107/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/8k/summary.json
+RULER 8k Full-13 closed-form score: 72.84
+
+############## length=16k ##############
+[phase1] using batch_size=2 for 16k
+[phase1] generating RULER prompts for 16k on GPUs 0,1
+10/01 18:00:12 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/16k/20261001_180012
+10/01 18:00:13 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+10/01 18:00:13 - OpenCompass - INFO - Partitioned into 2 tasks.
+10/01 18:00:13 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+10/01 18:00:13 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+10/01 18:00:13 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_16k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_16k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_16k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+16k        -          -         -       -
+10/01 18:24:59 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/16k/20261001_180012/summary/summary_20261001_180012.txt
+10/01 18:24:59 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/16k/20261001_180012/summary/summary_20261001_180012.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 16k | - | - | - | - |
+
+10/01 18:24:59 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/16k/20261001_180012/summary/summary_20261001_180012.md
+[phase2] closed-form patch on 16k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/16k/20261001_180012/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/16k/summary.json
+RULER 16k Full-13 closed-form score: 70.02
+
+############## length=32k ##############
+[phase1] using batch_size=1 for 32k
+[phase1] generating RULER prompts for 32k on GPUs 0,1
+10/01 18:41:23 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/32k/20261001_184123
+10/01 18:41:23 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+10/01 18:41:23 - OpenCompass - INFO - Partitioned into 2 tasks.
+10/01 18:41:23 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+10/01 18:41:23 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+10/01 18:41:23 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_32k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_32k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_32k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+32k        -          -         -       -
+10/01 19:08:05 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/32k/20261001_184123/summary/summary_20261001_184123.txt
+10/01 19:08:05 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/32k/20261001_184123/summary/summary_20261001_184123.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 32k | - | - | - | - |
+
+10/01 19:08:05 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/32k/20261001_184123/summary/summary_20261001_184123.md
+[phase2] closed-form patch on 32k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/32k/20261001_184123/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/32k/summary.json
+RULER 32k Full-13 closed-form score: 57.50
+
+############## length=64k ##############
+[phase1] using batch_size=1 for 64k
+[phase1] generating RULER prompts for 64k on GPUs 0,1
+10/01 19:31:27 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/64k/20261001_193127
+10/01 19:31:28 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+10/01 19:31:28 - OpenCompass - INFO - Partitioned into 2 tasks.
+10/01 19:31:28 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+10/01 19:31:28 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+10/01 19:31:28 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_64k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_64k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_64k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+64k        -          -         -       -
+10/01 20:32:02 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/64k/20261001_193127/summary/summary_20261001_193127.txt
+10/01 20:32:02 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/64k/20261001_193127/summary/summary_20261001_193127.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 64k | - | - | - | - |
+
+10/01 20:32:02 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/64k/20261001_193127/summary/summary_20261001_193127.md
+[phase2] closed-form patch on 64k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/predictions/64k/20261001_193127/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/64k/summary.json
+RULER 64k Full-13 closed-form score: 25.07
+
+========= CLOSED-FORM RULER Full-13 =========
+  length  n_tasks     patch
+------------------------------
+      4k       13     81.74
+      8k       13     72.84
+     16k       13     70.02
+     32k       13     57.50
+     64k       13     25.07
+------------------------------
+     AVG              70.52  (paper: 4k-32k)
+ ALL AVG              61.43  (4k, 8k, 16k, 32k, 64k)
+
+wrote /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/ruler_cf_summary.json
+[done] closed-form RULER results under /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643
+RULER 4k Full-13 closed-form score: 81.74
+RULER 8k Full-13 closed-form score: 72.84
+RULER 16k Full-13 closed-form score: 70.02
+RULER 32k Full-13 closed-form score: 57.50
+RULER 64k Full-13 closed-form score: 25.07
+Summary: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_59105643/ruler_cf_summary.json

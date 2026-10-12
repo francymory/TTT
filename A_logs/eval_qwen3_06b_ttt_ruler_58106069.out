@@ -1,0 +1,1728 @@
+Visible GPUs: 2; device: NVIDIA A100-SXM-64GB
+Checkpoint: /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/checkpoints/global_step_100/hf_ckpt
+RULER lengths: 4k 8k 16k 32k 64k; 100 samples per task, 13 tasks per length, closed-form TTT
+Results: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069
+==============================================================
+CF-RULER  model=qwen3_06b_base_ttt_57998376_step100
+  ckpt     = /leonardo_scratch/large/userexternal/fmorandi/checkpoints/ttt/qwen3_06b_base_ttt_57998376/checkpoints/global_step_100/hf_ckpt
+  lengths  = 4k 8k 16k 32k 64k   (serial)
+  gpus     = 0,1   (data parallel, 2 cards per length)
+  samples  = 100 (score <= 100)
+  out_dir  = /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069
+  CF: eta=0.1 eta_target=0.1 lam=1.0 shift=1 last_k=8192 norm_preserve=1
+==============================================================
+
+############## length=4k ##############
+[phase1] using batch_size=8 for 4k
+[phase1] generating RULER prompts for 4k on GPUs 0,1
+09/18 10:59:57 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/4k/20260918_105957
+09/18 10:59:58 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+09/18 10:59:58 - OpenCompass - INFO - Partitioned into 2 tasks.
+09/18 10:59:58 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+09/18 10:59:58 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+09/18 10:59:58 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_4k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_4k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_4k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_4k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_4k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_4k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+4k         -          -         -       -
+09/18 11:06:59 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/4k/20260918_105957/summary/summary_20260918_105957.txt
+09/18 11:06:59 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/4k/20260918_105957/summary/summary_20260918_105957.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 4k | - | - | - | - |
+
+09/18 11:06:59 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/4k/20260918_105957/summary/summary_20260918_105957.md
+[phase2] closed-form patch on 4k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/4k/20260918_105957/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/4k/summary.json
+RULER 4k Full-13 closed-form score: 77.72
+
+############## length=8k ##############
+[phase1] using batch_size=4 for 8k
+[phase1] generating RULER prompts for 8k on GPUs 0,1
+09/18 11:21:16 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/8k/20260918_112116
+09/18 11:21:16 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+09/18 11:21:16 - OpenCompass - INFO - Partitioned into 2 tasks.
+09/18 11:21:16 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+09/18 11:21:16 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+09/18 11:21:16 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_8k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_8k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_8k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_8k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_8k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_8k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+8k         -          -         -       -
+09/18 11:33:25 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/8k/20260918_112116/summary/summary_20260918_112116.txt
+09/18 11:33:25 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/8k/20260918_112116/summary/summary_20260918_112116.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 8k | - | - | - | - |
+
+09/18 11:33:25 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/8k/20260918_112116/summary/summary_20260918_112116.md
+[phase2] closed-form patch on 8k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/8k/20260918_112116/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/8k/summary.json
+RULER 8k Full-13 closed-form score: 69.10
+
+############## length=16k ##############
+[phase1] using batch_size=2 for 16k
+[phase1] generating RULER prompts for 16k on GPUs 0,1
+09/18 11:49:33 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/16k/20260918_114933
+09/18 11:49:34 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+09/18 11:49:34 - OpenCompass - INFO - Partitioned into 2 tasks.
+09/18 11:49:34 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+09/18 11:49:34 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+09/18 11:49:34 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_16k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_16k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_16k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_16k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_16k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_16k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+16k        -          -         -       -
+09/18 12:16:36 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/16k/20260918_114933/summary/summary_20260918_114933.txt
+09/18 12:16:36 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/16k/20260918_114933/summary/summary_20260918_114933.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 16k | - | - | - | - |
+
+09/18 12:16:36 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/16k/20260918_114933/summary/summary_20260918_114933.md
+[phase2] closed-form patch on 16k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/16k/20260918_114933/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/16k/summary.json
+RULER 16k Full-13 closed-form score: 64.38
+
+############## length=32k ##############
+[phase1] using batch_size=1 for 32k
+[phase1] generating RULER prompts for 32k on GPUs 0,1
+09/18 12:35:16 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/32k/20260918_123516
+09/18 12:35:16 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+09/18 12:35:16 - OpenCompass - INFO - Partitioned into 2 tasks.
+09/18 12:35:16 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+09/18 12:35:16 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+09/18 12:35:16 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_32k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_32k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_32k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_32k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_32k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_32k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+32k        -          -         -       -
+09/18 13:03:39 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/32k/20260918_123516/summary/summary_20260918_123516.txt
+09/18 13:03:39 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/32k/20260918_123516/summary/summary_20260918_123516.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 32k | - | - | - | - |
+
+09/18 13:03:39 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/32k/20260918_123516/summary/summary_20260918_123516.md
+[phase2] closed-form patch on 32k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/32k/20260918_123516/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/32k/summary.json
+RULER 32k Full-13 closed-form score: 55.77
+
+############## length=64k ##############
+[phase1] using batch_size=1 for 64k
+[phase1] generating RULER prompts for 64k on GPUs 0,1
+09/18 13:29:12 - OpenCompass - INFO - Current exp folder: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/64k/20260918_132912
+09/18 13:29:13 - OpenCompass - WARNING - SlurmRunner is not used, so the partition argument is ignored.
+Max length 65536 | Current length 1717 | Docs: 10
+Max length 65536 | Current length 3079 | Docs: 20
+Max length 65536 | Current length 4603 | Docs: 30
+Max length 65536 | Current length 6063 | Docs: 40
+Max length 65536 | Current length 7568 | Docs: 50
+Max length 65536 | Current length 9481 | Docs: 60
+Max length 65536 | Current length 11221 | Docs: 70
+Max length 65536 | Current length 12853 | Docs: 80
+Max length 65536 | Current length 14763 | Docs: 90
+Max length 65536 | Current length 17017 | Docs: 100
+Max length 65536 | Current length 17839 | Docs: 110
+Max length 65536 | Current length 20240 | Docs: 120
+Max length 65536 | Current length 21335 | Docs: 130
+Max length 65536 | Current length 23011 | Docs: 140
+Max length 65536 | Current length 25175 | Docs: 150
+Max length 65536 | Current length 26473 | Docs: 160
+Max length 65536 | Current length 29914 | Docs: 170
+Max length 65536 | Current length 29684 | Docs: 180
+Max length 65536 | Current length 32087 | Docs: 190
+Max length 65536 | Current length 32697 | Docs: 200
+Max length 65536 | Current length 36456 | Docs: 210
+Max length 65536 | Current length 38222 | Docs: 220
+Max length 65536 | Current length 38527 | Docs: 230
+Max length 65536 | Current length 40706 | Docs: 240
+Max length 65536 | Current length 43739 | Docs: 250
+Max length 65536 | Current length 43644 | Docs: 260
+Max length 65536 | Current length 46109 | Docs: 270
+Max length 65536 | Current length 47896 | Docs: 280
+Max length 65536 | Current length 50378 | Docs: 290
+Max length 65536 | Current length 50972 | Docs: 300
+Max length 65536 | Current length 54584 | Docs: 310
+Max length 65536 | Current length 53866 | Docs: 320
+Max length 65536 | Current length 59373 | Docs: 330
+Max length 65536 | Current length 58750 | Docs: 340
+Max length 65536 | Current length 61670 | Docs: 350
+Max length 65536 | Current length 63806 | Docs: 360
+Max length 65536 | Current length 63822 | Docs: 370
+Max length 65536 | Current length 66399 | Docs: 380
+Number of documents: 370
+Max length 65536 | Current length 1342 | Docs: 10
+Max length 65536 | Current length 2652 | Docs: 20
+Max length 65536 | Current length 3952 | Docs: 30
+Max length 65536 | Current length 5350 | Docs: 40
+Max length 65536 | Current length 7268 | Docs: 50
+Max length 65536 | Current length 8363 | Docs: 60
+Max length 65536 | Current length 8763 | Docs: 70
+Max length 65536 | Current length 10108 | Docs: 80
+Max length 65536 | Current length 12483 | Docs: 90
+Max length 65536 | Current length 13363 | Docs: 100
+Max length 65536 | Current length 15589 | Docs: 110
+Max length 65536 | Current length 16816 | Docs: 120
+Max length 65536 | Current length 16742 | Docs: 130
+Max length 65536 | Current length 19114 | Docs: 140
+Max length 65536 | Current length 20321 | Docs: 150
+Max length 65536 | Current length 21193 | Docs: 160
+Max length 65536 | Current length 23985 | Docs: 170
+Max length 65536 | Current length 24495 | Docs: 180
+Max length 65536 | Current length 26076 | Docs: 190
+Max length 65536 | Current length 26790 | Docs: 200
+Max length 65536 | Current length 29429 | Docs: 210
+Max length 65536 | Current length 30611 | Docs: 220
+Max length 65536 | Current length 33152 | Docs: 230
+Max length 65536 | Current length 34681 | Docs: 240
+Max length 65536 | Current length 35052 | Docs: 250
+Max length 65536 | Current length 38038 | Docs: 260
+Max length 65536 | Current length 38530 | Docs: 270
+Max length 65536 | Current length 39218 | Docs: 280
+Max length 65536 | Current length 40549 | Docs: 290
+Max length 65536 | Current length 43460 | Docs: 300
+Max length 65536 | Current length 44900 | Docs: 310
+Max length 65536 | Current length 43085 | Docs: 320
+Max length 65536 | Current length 47196 | Docs: 330
+Max length 65536 | Current length 45351 | Docs: 340
+Max length 65536 | Current length 49065 | Docs: 350
+Max length 65536 | Current length 49162 | Docs: 360
+Max length 65536 | Current length 52233 | Docs: 370
+Max length 65536 | Current length 52333 | Docs: 380
+Max length 65536 | Current length 56992 | Docs: 390
+Max length 65536 | Current length 55450 | Docs: 400
+Max length 65536 | Current length 57906 | Docs: 410
+Max length 65536 | Current length 58652 | Docs: 420
+Max length 65536 | Current length 62076 | Docs: 430
+Max length 65536 | Current length 61132 | Docs: 440
+Max length 65536 | Current length 61803 | Docs: 450
+Max length 65536 | Current length 65156 | Docs: 460
+Max length 65536 | Current length 65545 | Docs: 470
+Number of documents: 460
+Num haystack: 25
+Max length 65536 | Current length 816 | Haystack: 25
+Max length 65536 | Current length 1413 | Haystack: 50
+Max length 65536 | Current length 2013 | Haystack: 75
+Max length 65536 | Current length 2610 | Haystack: 100
+Max length 65536 | Current length 3219 | Haystack: 125
+Max length 65536 | Current length 3819 | Haystack: 150
+Max length 65536 | Current length 4413 | Haystack: 175
+Max length 65536 | Current length 5016 | Haystack: 200
+Max length 65536 | Current length 5610 | Haystack: 225
+Max length 65536 | Current length 6213 | Haystack: 250
+Max length 65536 | Current length 6816 | Haystack: 275
+Max length 65536 | Current length 7416 | Haystack: 300
+Max length 65536 | Current length 8019 | Haystack: 325
+Max length 65536 | Current length 8619 | Haystack: 350
+Max length 65536 | Current length 9216 | Haystack: 375
+Max length 65536 | Current length 9816 | Haystack: 400
+Max length 65536 | Current length 10416 | Haystack: 425
+Max length 65536 | Current length 11013 | Haystack: 450
+Max length 65536 | Current length 11616 | Haystack: 475
+Max length 65536 | Current length 12213 | Haystack: 500
+Max length 65536 | Current length 12813 | Haystack: 525
+Max length 65536 | Current length 13410 | Haystack: 550
+Max length 65536 | Current length 14019 | Haystack: 575
+Max length 65536 | Current length 14619 | Haystack: 600
+Max length 65536 | Current length 15216 | Haystack: 625
+Max length 65536 | Current length 15816 | Haystack: 650
+Max length 65536 | Current length 16416 | Haystack: 675
+Max length 65536 | Current length 17013 | Haystack: 700
+Max length 65536 | Current length 17613 | Haystack: 725
+Max length 65536 | Current length 18213 | Haystack: 750
+Max length 65536 | Current length 18813 | Haystack: 775
+Max length 65536 | Current length 19413 | Haystack: 800
+Max length 65536 | Current length 20013 | Haystack: 825
+Max length 65536 | Current length 20613 | Haystack: 850
+Max length 65536 | Current length 21213 | Haystack: 875
+Max length 65536 | Current length 21819 | Haystack: 900
+Max length 65536 | Current length 22416 | Haystack: 925
+Max length 65536 | Current length 23013 | Haystack: 950
+Max length 65536 | Current length 23622 | Haystack: 975
+Max length 65536 | Current length 24216 | Haystack: 1000
+Max length 65536 | Current length 24816 | Haystack: 1025
+Max length 65536 | Current length 25416 | Haystack: 1050
+Max length 65536 | Current length 26013 | Haystack: 1075
+Max length 65536 | Current length 26616 | Haystack: 1100
+Max length 65536 | Current length 27216 | Haystack: 1125
+Max length 65536 | Current length 27819 | Haystack: 1150
+Max length 65536 | Current length 28416 | Haystack: 1175
+Max length 65536 | Current length 29013 | Haystack: 1200
+Max length 65536 | Current length 29613 | Haystack: 1225
+Max length 65536 | Current length 30213 | Haystack: 1250
+Max length 65536 | Current length 30816 | Haystack: 1275
+Max length 65536 | Current length 31416 | Haystack: 1300
+Max length 65536 | Current length 32013 | Haystack: 1325
+Max length 65536 | Current length 32619 | Haystack: 1350
+Max length 65536 | Current length 33222 | Haystack: 1375
+Max length 65536 | Current length 33813 | Haystack: 1400
+Max length 65536 | Current length 34419 | Haystack: 1425
+Max length 65536 | Current length 35010 | Haystack: 1450
+Max length 65536 | Current length 35619 | Haystack: 1475
+Max length 65536 | Current length 36216 | Haystack: 1500
+Max length 65536 | Current length 36816 | Haystack: 1525
+Max length 65536 | Current length 37416 | Haystack: 1550
+Max length 65536 | Current length 38019 | Haystack: 1575
+Max length 65536 | Current length 38616 | Haystack: 1600
+Max length 65536 | Current length 39213 | Haystack: 1625
+Max length 65536 | Current length 39816 | Haystack: 1650
+Max length 65536 | Current length 40422 | Haystack: 1675
+Max length 65536 | Current length 41019 | Haystack: 1700
+Max length 65536 | Current length 41619 | Haystack: 1725
+Max length 65536 | Current length 42213 | Haystack: 1750
+Max length 65536 | Current length 42813 | Haystack: 1775
+Max length 65536 | Current length 43419 | Haystack: 1800
+Max length 65536 | Current length 44019 | Haystack: 1825
+Max length 65536 | Current length 44610 | Haystack: 1850
+Max length 65536 | Current length 45213 | Haystack: 1875
+Max length 65536 | Current length 45810 | Haystack: 1900
+Max length 65536 | Current length 46422 | Haystack: 1925
+Max length 65536 | Current length 47016 | Haystack: 1950
+Max length 65536 | Current length 47613 | Haystack: 1975
+Max length 65536 | Current length 48216 | Haystack: 2000
+Max length 65536 | Current length 48813 | Haystack: 2025
+Max length 65536 | Current length 49413 | Haystack: 2050
+Max length 65536 | Current length 50016 | Haystack: 2075
+Max length 65536 | Current length 50613 | Haystack: 2100
+Max length 65536 | Current length 51213 | Haystack: 2125
+Max length 65536 | Current length 51813 | Haystack: 2150
+Max length 65536 | Current length 52410 | Haystack: 2175
+Max length 65536 | Current length 53013 | Haystack: 2200
+Max length 65536 | Current length 53610 | Haystack: 2225
+Max length 65536 | Current length 54216 | Haystack: 2250
+Max length 65536 | Current length 54819 | Haystack: 2275
+Max length 65536 | Current length 55416 | Haystack: 2300
+Max length 65536 | Current length 56013 | Haystack: 2325
+Max length 65536 | Current length 56622 | Haystack: 2350
+Max length 65536 | Current length 57213 | Haystack: 2375
+Max length 65536 | Current length 57819 | Haystack: 2400
+Max length 65536 | Current length 58413 | Haystack: 2425
+Max length 65536 | Current length 59022 | Haystack: 2450
+Max length 65536 | Current length 59616 | Haystack: 2475
+Max length 65536 | Current length 60216 | Haystack: 2500
+Max length 65536 | Current length 60816 | Haystack: 2525
+Max length 65536 | Current length 61413 | Haystack: 2550
+Max length 65536 | Current length 62016 | Haystack: 2575
+Max length 65536 | Current length 62616 | Haystack: 2600
+Max length 65536 | Current length 63213 | Haystack: 2625
+Max length 65536 | Current length 63816 | Haystack: 2650
+Max length 65536 | Current length 64422 | Haystack: 2675
+Max length 65536 | Current length 65016 | Haystack: 2700
+Max length 65536 | Current length 65616 | Haystack: 2725
+Num haystack: 500
+Max length 65536 | Current length 807 | Haystack: 500
+Max length 65536 | Current length 1379 | Haystack: 1000
+Max length 65536 | Current length 1934 | Haystack: 1500
+Max length 65536 | Current length 2542 | Haystack: 2000
+Max length 65536 | Current length 3146 | Haystack: 2500
+Max length 65536 | Current length 3706 | Haystack: 3000
+Max length 65536 | Current length 4286 | Haystack: 3500
+Max length 65536 | Current length 4897 | Haystack: 4000
+Max length 65536 | Current length 5492 | Haystack: 4500
+Max length 65536 | Current length 6059 | Haystack: 5000
+Max length 65536 | Current length 6625 | Haystack: 5500
+Max length 65536 | Current length 7219 | Haystack: 6000
+Max length 65536 | Current length 7817 | Haystack: 6500
+Max length 65536 | Current length 8442 | Haystack: 7000
+Max length 65536 | Current length 9058 | Haystack: 7500
+Max length 65536 | Current length 9647 | Haystack: 8000
+Max length 65536 | Current length 10229 | Haystack: 8500
+Max length 65536 | Current length 10823 | Haystack: 9000
+Max length 65536 | Current length 11457 | Haystack: 9500
+Max length 65536 | Current length 12055 | Haystack: 10000
+Max length 65536 | Current length 12651 | Haystack: 10500
+Max length 65536 | Current length 13253 | Haystack: 11000
+Max length 65536 | Current length 13833 | Haystack: 11500
+Max length 65536 | Current length 14421 | Haystack: 12000
+Max length 65536 | Current length 15009 | Haystack: 12500
+Max length 65536 | Current length 15589 | Haystack: 13000
+Max length 65536 | Current length 16176 | Haystack: 13500
+Max length 65536 | Current length 16748 | Haystack: 14000
+Max length 65536 | Current length 17340 | Haystack: 14500
+Max length 65536 | Current length 17943 | Haystack: 15000
+Max length 65536 | Current length 18526 | Haystack: 15500
+Max length 65536 | Current length 19096 | Haystack: 16000
+Max length 65536 | Current length 19659 | Haystack: 16500
+Max length 65536 | Current length 20229 | Haystack: 17000
+Max length 65536 | Current length 20810 | Haystack: 17500
+Max length 65536 | Current length 21403 | Haystack: 18000
+Max length 65536 | Current length 21968 | Haystack: 18500
+Max length 65536 | Current length 22562 | Haystack: 19000
+Max length 65536 | Current length 23146 | Haystack: 19500
+Max length 65536 | Current length 23721 | Haystack: 20000
+Max length 65536 | Current length 24295 | Haystack: 20500
+Max length 65536 | Current length 24878 | Haystack: 21000
+Max length 65536 | Current length 25450 | Haystack: 21500
+Max length 65536 | Current length 26052 | Haystack: 22000
+Max length 65536 | Current length 26640 | Haystack: 22500
+Max length 65536 | Current length 27222 | Haystack: 23000
+Max length 65536 | Current length 27814 | Haystack: 23500
+Max length 65536 | Current length 28411 | Haystack: 24000
+Max length 65536 | Current length 28995 | Haystack: 24500
+Max length 65536 | Current length 29569 | Haystack: 25000
+Max length 65536 | Current length 30163 | Haystack: 25500
+Max length 65536 | Current length 30797 | Haystack: 26000
+Max length 65536 | Current length 31422 | Haystack: 26500
+Max length 65536 | Current length 32201 | Haystack: 27000
+Max length 65536 | Current length 32892 | Haystack: 27500
+Max length 65536 | Current length 33510 | Haystack: 28000
+Max length 65536 | Current length 34092 | Haystack: 28500
+Max length 65536 | Current length 34663 | Haystack: 29000
+Max length 65536 | Current length 35226 | Haystack: 29500
+Max length 65536 | Current length 35789 | Haystack: 30000
+Max length 65536 | Current length 36371 | Haystack: 30500
+Max length 65536 | Current length 36957 | Haystack: 31000
+Max length 65536 | Current length 37524 | Haystack: 31500
+Max length 65536 | Current length 38092 | Haystack: 32000
+Max length 65536 | Current length 38676 | Haystack: 32500
+Max length 65536 | Current length 39284 | Haystack: 33000
+Max length 65536 | Current length 39881 | Haystack: 33500
+Max length 65536 | Current length 40467 | Haystack: 34000
+Max length 65536 | Current length 41079 | Haystack: 34500
+Max length 65536 | Current length 41657 | Haystack: 35000
+Max length 65536 | Current length 42236 | Haystack: 35500
+Max length 65536 | Current length 42834 | Haystack: 36000
+Max length 65536 | Current length 43425 | Haystack: 36500
+Max length 65536 | Current length 44010 | Haystack: 37000
+Max length 65536 | Current length 44635 | Haystack: 37500
+Max length 65536 | Current length 45204 | Haystack: 38000
+Max length 65536 | Current length 45782 | Haystack: 38500
+Max length 65536 | Current length 46372 | Haystack: 39000
+Max length 65536 | Current length 46947 | Haystack: 39500
+Max length 65536 | Current length 47518 | Haystack: 40000
+Max length 65536 | Current length 48081 | Haystack: 40500
+Max length 65536 | Current length 48663 | Haystack: 41000
+Max length 65536 | Current length 49229 | Haystack: 41500
+Max length 65536 | Current length 49805 | Haystack: 42000
+Max length 65536 | Current length 50419 | Haystack: 42500
+Max length 65536 | Current length 50976 | Haystack: 43000
+Max length 65536 | Current length 51534 | Haystack: 43500
+Max length 65536 | Current length 52088 | Haystack: 44000
+Max length 65536 | Current length 52690 | Haystack: 44500
+Max length 65536 | Current length 53275 | Haystack: 45000
+Max length 65536 | Current length 53837 | Haystack: 45500
+Max length 65536 | Current length 54453 | Haystack: 46000
+Max length 65536 | Current length 55038 | Haystack: 46500
+Max length 65536 | Current length 55611 | Haystack: 47000
+Max length 65536 | Current length 56202 | Haystack: 47500
+Max length 65536 | Current length 56769 | Haystack: 48000
+Max length 65536 | Current length 57360 | Haystack: 48500
+Max length 65536 | Current length 57938 | Haystack: 49000
+Max length 65536 | Current length 58501 | Haystack: 49500
+Max length 65536 | Current length 59075 | Haystack: 50000
+Max length 65536 | Current length 59694 | Haystack: 50500
+Max length 65536 | Current length 60313 | Haystack: 51000
+Max length 65536 | Current length 60894 | Haystack: 51500
+Max length 65536 | Current length 61467 | Haystack: 52000
+Max length 65536 | Current length 62065 | Haystack: 52500
+Max length 65536 | Current length 62628 | Haystack: 53000
+Max length 65536 | Current length 63224 | Haystack: 53500
+Max length 65536 | Current length 63814 | Haystack: 54000
+Max length 65536 | Current length 64378 | Haystack: 54500
+Max length 65536 | Current length 64964 | Haystack: 55000
+Max length 65536 | Current length 65584 | Haystack: 55500
+Num haystack: 500
+Max length 65536 | Current length 858 | Haystack: 500
+Max length 65536 | Current length 1430 | Haystack: 1000
+Max length 65536 | Current length 1989 | Haystack: 1500
+Max length 65536 | Current length 2597 | Haystack: 2000
+Max length 65536 | Current length 3191 | Haystack: 2500
+Max length 65536 | Current length 3761 | Haystack: 3000
+Max length 65536 | Current length 4337 | Haystack: 3500
+Max length 65536 | Current length 4936 | Haystack: 4000
+Max length 65536 | Current length 5554 | Haystack: 4500
+Max length 65536 | Current length 6111 | Haystack: 5000
+Max length 65536 | Current length 6677 | Haystack: 5500
+Max length 65536 | Current length 7272 | Haystack: 6000
+Max length 65536 | Current length 7849 | Haystack: 6500
+Max length 65536 | Current length 8481 | Haystack: 7000
+Max length 65536 | Current length 9106 | Haystack: 7500
+Max length 65536 | Current length 9698 | Haystack: 8000
+Max length 65536 | Current length 10273 | Haystack: 8500
+Max length 65536 | Current length 10875 | Haystack: 9000
+Max length 65536 | Current length 11511 | Haystack: 9500
+Max length 65536 | Current length 12102 | Haystack: 10000
+Max length 65536 | Current length 12705 | Haystack: 10500
+Max length 65536 | Current length 13308 | Haystack: 11000
+Max length 65536 | Current length 13880 | Haystack: 11500
+Max length 65536 | Current length 14466 | Haystack: 12000
+Max length 65536 | Current length 15061 | Haystack: 12500
+Max length 65536 | Current length 15629 | Haystack: 13000
+Max length 65536 | Current length 16229 | Haystack: 13500
+Max length 65536 | Current length 16801 | Haystack: 14000
+Max length 65536 | Current length 17388 | Haystack: 14500
+Max length 65536 | Current length 17996 | Haystack: 15000
+Max length 65536 | Current length 18567 | Haystack: 15500
+Max length 65536 | Current length 19154 | Haystack: 16000
+Max length 65536 | Current length 19697 | Haystack: 16500
+Max length 65536 | Current length 20282 | Haystack: 17000
+Max length 65536 | Current length 20863 | Haystack: 17500
+Max length 65536 | Current length 21448 | Haystack: 18000
+Max length 65536 | Current length 22027 | Haystack: 18500
+Max length 65536 | Current length 22609 | Haystack: 19000
+Max length 65536 | Current length 23192 | Haystack: 19500
+Max length 65536 | Current length 23762 | Haystack: 20000
+Max length 65536 | Current length 24342 | Haystack: 20500
+Max length 65536 | Current length 24929 | Haystack: 21000
+Max length 65536 | Current length 25499 | Haystack: 21500
+Max length 65536 | Current length 26097 | Haystack: 22000
+Max length 65536 | Current length 26686 | Haystack: 22500
+Max length 65536 | Current length 27281 | Haystack: 23000
+Max length 65536 | Current length 27865 | Haystack: 23500
+Max length 65536 | Current length 28472 | Haystack: 24000
+Max length 65536 | Current length 29037 | Haystack: 24500
+Max length 65536 | Current length 29614 | Haystack: 25000
+Max length 65536 | Current length 30210 | Haystack: 25500
+Max length 65536 | Current length 30852 | Haystack: 26000
+Max length 65536 | Current length 31458 | Haystack: 26500
+Max length 65536 | Current length 32266 | Haystack: 27000
+Max length 65536 | Current length 32946 | Haystack: 27500
+Max length 65536 | Current length 33566 | Haystack: 28000
+Max length 65536 | Current length 34126 | Haystack: 28500
+Max length 65536 | Current length 34713 | Haystack: 29000
+Max length 65536 | Current length 35270 | Haystack: 29500
+Max length 65536 | Current length 35844 | Haystack: 30000
+Max length 65536 | Current length 36404 | Haystack: 30500
+Max length 65536 | Current length 37007 | Haystack: 31000
+Max length 65536 | Current length 37565 | Haystack: 31500
+Max length 65536 | Current length 38144 | Haystack: 32000
+Max length 65536 | Current length 38734 | Haystack: 32500
+Max length 65536 | Current length 39332 | Haystack: 33000
+Max length 65536 | Current length 39940 | Haystack: 33500
+Max length 65536 | Current length 40520 | Haystack: 34000
+Max length 65536 | Current length 41125 | Haystack: 34500
+Max length 65536 | Current length 41716 | Haystack: 35000
+Max length 65536 | Current length 42283 | Haystack: 35500
+Max length 65536 | Current length 42862 | Haystack: 36000
+Max length 65536 | Current length 43458 | Haystack: 36500
+Max length 65536 | Current length 44058 | Haystack: 37000
+Max length 65536 | Current length 44679 | Haystack: 37500
+Max length 65536 | Current length 45251 | Haystack: 38000
+Max length 65536 | Current length 45831 | Haystack: 38500
+Max length 65536 | Current length 46421 | Haystack: 39000
+Max length 65536 | Current length 47001 | Haystack: 39500
+Max length 65536 | Current length 47566 | Haystack: 40000
+Max length 65536 | Current length 48132 | Haystack: 40500
+Max length 65536 | Current length 48711 | Haystack: 41000
+Max length 65536 | Current length 49286 | Haystack: 41500
+Max length 65536 | Current length 49861 | Haystack: 42000
+Max length 65536 | Current length 50463 | Haystack: 42500
+Max length 65536 | Current length 51032 | Haystack: 43000
+Max length 65536 | Current length 51587 | Haystack: 43500
+Max length 65536 | Current length 52128 | Haystack: 44000
+Max length 65536 | Current length 52738 | Haystack: 44500
+Max length 65536 | Current length 53326 | Haystack: 45000
+Max length 65536 | Current length 53894 | Haystack: 45500
+Max length 65536 | Current length 54513 | Haystack: 46000
+Max length 65536 | Current length 55091 | Haystack: 46500
+Max length 65536 | Current length 55663 | Haystack: 47000
+Max length 65536 | Current length 56243 | Haystack: 47500
+Max length 65536 | Current length 56815 | Haystack: 48000
+Max length 65536 | Current length 57396 | Haystack: 48500
+Max length 65536 | Current length 57986 | Haystack: 49000
+Max length 65536 | Current length 58552 | Haystack: 49500
+Max length 65536 | Current length 59137 | Haystack: 50000
+Max length 65536 | Current length 59741 | Haystack: 50500
+Max length 65536 | Current length 60356 | Haystack: 51000
+Max length 65536 | Current length 60951 | Haystack: 51500
+Max length 65536 | Current length 61517 | Haystack: 52000
+Max length 65536 | Current length 62109 | Haystack: 52500
+Max length 65536 | Current length 62674 | Haystack: 53000
+Max length 65536 | Current length 63272 | Haystack: 53500
+Max length 65536 | Current length 63870 | Haystack: 54000
+Max length 65536 | Current length 64429 | Haystack: 54500
+Max length 65536 | Current length 65016 | Haystack: 55000
+Max length 65536 | Current length 65636 | Haystack: 55500
+Num haystack: 500
+Max length 65536 | Current length 872 | Haystack: 500
+Max length 65536 | Current length 1448 | Haystack: 1000
+Max length 65536 | Current length 2002 | Haystack: 1500
+Max length 65536 | Current length 2606 | Haystack: 2000
+Max length 65536 | Current length 3214 | Haystack: 2500
+Max length 65536 | Current length 3767 | Haystack: 3000
+Max length 65536 | Current length 4347 | Haystack: 3500
+Max length 65536 | Current length 4967 | Haystack: 4000
+Max length 65536 | Current length 5560 | Haystack: 4500
+Max length 65536 | Current length 6126 | Haystack: 5000
+Max length 65536 | Current length 6685 | Haystack: 5500
+Max length 65536 | Current length 7289 | Haystack: 6000
+Max length 65536 | Current length 7880 | Haystack: 6500
+Max length 65536 | Current length 8506 | Haystack: 7000
+Max length 65536 | Current length 9116 | Haystack: 7500
+Max length 65536 | Current length 9713 | Haystack: 8000
+Max length 65536 | Current length 10292 | Haystack: 8500
+Max length 65536 | Current length 10887 | Haystack: 9000
+Max length 65536 | Current length 11525 | Haystack: 9500
+Max length 65536 | Current length 12122 | Haystack: 10000
+Max length 65536 | Current length 12723 | Haystack: 10500
+Max length 65536 | Current length 13317 | Haystack: 11000
+Max length 65536 | Current length 13895 | Haystack: 11500
+Max length 65536 | Current length 14483 | Haystack: 12000
+Max length 65536 | Current length 15072 | Haystack: 12500
+Max length 65536 | Current length 15652 | Haystack: 13000
+Max length 65536 | Current length 16240 | Haystack: 13500
+Max length 65536 | Current length 16817 | Haystack: 14000
+Max length 65536 | Current length 17405 | Haystack: 14500
+Max length 65536 | Current length 18011 | Haystack: 15000
+Max length 65536 | Current length 18594 | Haystack: 15500
+Max length 65536 | Current length 19165 | Haystack: 16000
+Max length 65536 | Current length 19734 | Haystack: 16500
+Max length 65536 | Current length 20298 | Haystack: 17000
+Max length 65536 | Current length 20877 | Haystack: 17500
+Max length 65536 | Current length 21462 | Haystack: 18000
+Max length 65536 | Current length 22037 | Haystack: 18500
+Max length 65536 | Current length 22631 | Haystack: 19000
+Max length 65536 | Current length 23216 | Haystack: 19500
+Max length 65536 | Current length 23780 | Haystack: 20000
+Max length 65536 | Current length 24361 | Haystack: 20500
+Max length 65536 | Current length 24948 | Haystack: 21000
+Max length 65536 | Current length 25512 | Haystack: 21500
+Max length 65536 | Current length 26118 | Haystack: 22000
+Max length 65536 | Current length 26701 | Haystack: 22500
+Max length 65536 | Current length 27292 | Haystack: 23000
+Max length 65536 | Current length 27876 | Haystack: 23500
+Max length 65536 | Current length 28472 | Haystack: 24000
+Max length 65536 | Current length 29063 | Haystack: 24500
+Max length 65536 | Current length 29631 | Haystack: 25000
+Max length 65536 | Current length 30227 | Haystack: 25500
+Max length 65536 | Current length 30858 | Haystack: 26000
+Max length 65536 | Current length 31478 | Haystack: 26500
+Max length 65536 | Current length 32265 | Haystack: 27000
+Max length 65536 | Current length 32956 | Haystack: 27500
+Max length 65536 | Current length 33584 | Haystack: 28000
+Max length 65536 | Current length 34152 | Haystack: 28500
+Max length 65536 | Current length 34729 | Haystack: 29000
+Max length 65536 | Current length 35285 | Haystack: 29500
+Max length 65536 | Current length 35852 | Haystack: 30000
+Max length 65536 | Current length 36431 | Haystack: 30500
+Max length 65536 | Current length 37024 | Haystack: 31000
+Max length 65536 | Current length 37584 | Haystack: 31500
+Max length 65536 | Current length 38156 | Haystack: 32000
+Max length 65536 | Current length 38736 | Haystack: 32500
+Max length 65536 | Current length 39349 | Haystack: 33000
+Max length 65536 | Current length 39949 | Haystack: 33500
+Max length 65536 | Current length 40535 | Haystack: 34000
+Max length 65536 | Current length 41154 | Haystack: 34500
+Max length 65536 | Current length 41713 | Haystack: 35000
+Max length 65536 | Current length 42314 | Haystack: 35500
+Max length 65536 | Current length 42897 | Haystack: 36000
+Max length 65536 | Current length 43489 | Haystack: 36500
+Max length 65536 | Current length 44073 | Haystack: 37000
+Max length 65536 | Current length 44695 | Haystack: 37500
+Max length 65536 | Current length 45267 | Haystack: 38000
+Max length 65536 | Current length 45853 | Haystack: 38500
+Max length 65536 | Current length 46437 | Haystack: 39000
+Max length 65536 | Current length 47009 | Haystack: 39500
+Max length 65536 | Current length 47586 | Haystack: 40000
+Max length 65536 | Current length 48148 | Haystack: 40500
+Max length 65536 | Current length 48726 | Haystack: 41000
+Max length 65536 | Current length 49303 | Haystack: 41500
+Max length 65536 | Current length 49871 | Haystack: 42000
+Max length 65536 | Current length 50478 | Haystack: 42500
+Max length 65536 | Current length 51050 | Haystack: 43000
+Max length 65536 | Current length 51590 | Haystack: 43500
+Max length 65536 | Current length 52156 | Haystack: 44000
+Max length 65536 | Current length 52754 | Haystack: 44500
+Max length 65536 | Current length 53342 | Haystack: 45000
+Max length 65536 | Current length 53905 | Haystack: 45500
+Max length 65536 | Current length 54515 | Haystack: 46000
+Max length 65536 | Current length 55100 | Haystack: 46500
+Max length 65536 | Current length 55676 | Haystack: 47000
+Max length 65536 | Current length 56261 | Haystack: 47500
+Max length 65536 | Current length 56840 | Haystack: 48000
+Max length 65536 | Current length 57420 | Haystack: 48500
+Max length 65536 | Current length 58011 | Haystack: 49000
+Max length 65536 | Current length 58569 | Haystack: 49500
+Max length 65536 | Current length 59155 | Haystack: 50000
+Max length 65536 | Current length 59756 | Haystack: 50500
+Max length 65536 | Current length 60380 | Haystack: 51000
+Max length 65536 | Current length 60958 | Haystack: 51500
+Max length 65536 | Current length 61539 | Haystack: 52000
+Max length 65536 | Current length 62120 | Haystack: 52500
+Max length 65536 | Current length 62690 | Haystack: 53000
+Max length 65536 | Current length 63292 | Haystack: 53500
+Max length 65536 | Current length 63876 | Haystack: 54000
+Max length 65536 | Current length 64451 | Haystack: 54500
+Max length 65536 | Current length 65034 | Haystack: 55000
+Max length 65536 | Current length 65645 | Haystack: 55500
+Num haystack: 25
+Max length 65536 | Current length 766 | Haystack: 25
+Max length 65536 | Current length 1307 | Haystack: 50
+Max length 65536 | Current length 1850 | Haystack: 75
+Max length 65536 | Current length 2400 | Haystack: 100
+Max length 65536 | Current length 2925 | Haystack: 125
+Max length 65536 | Current length 3482 | Haystack: 150
+Max length 65536 | Current length 4016 | Haystack: 175
+Max length 65536 | Current length 4564 | Haystack: 200
+Max length 65536 | Current length 5123 | Haystack: 225
+Max length 65536 | Current length 5681 | Haystack: 250
+Max length 65536 | Current length 6225 | Haystack: 275
+Max length 65536 | Current length 6763 | Haystack: 300
+Max length 65536 | Current length 7303 | Haystack: 325
+Max length 65536 | Current length 7868 | Haystack: 350
+Max length 65536 | Current length 8368 | Haystack: 375
+Max length 65536 | Current length 8936 | Haystack: 400
+Max length 65536 | Current length 9478 | Haystack: 425
+Max length 65536 | Current length 10002 | Haystack: 450
+Max length 65536 | Current length 10614 | Haystack: 475
+Max length 65536 | Current length 11156 | Haystack: 500
+Max length 65536 | Current length 11689 | Haystack: 525
+Max length 65536 | Current length 12163 | Haystack: 550
+Max length 65536 | Current length 12773 | Haystack: 575
+Max length 65536 | Current length 13256 | Haystack: 600
+Max length 65536 | Current length 13876 | Haystack: 625
+Max length 65536 | Current length 14357 | Haystack: 650
+Max length 65536 | Current length 14964 | Haystack: 675
+Max length 65536 | Current length 15477 | Haystack: 700
+Max length 65536 | Current length 16025 | Haystack: 725
+Max length 65536 | Current length 16596 | Haystack: 750
+Max length 65536 | Current length 17097 | Haystack: 775
+Max length 65536 | Current length 17649 | Haystack: 800
+Max length 65536 | Current length 18208 | Haystack: 825
+Max length 65536 | Current length 18759 | Haystack: 850
+Max length 65536 | Current length 19322 | Haystack: 875
+Max length 65536 | Current length 19838 | Haystack: 900
+Max length 65536 | Current length 20419 | Haystack: 925
+Max length 65536 | Current length 21011 | Haystack: 950
+Max length 65536 | Current length 21482 | Haystack: 975
+Max length 65536 | Current length 21990 | Haystack: 1000
+Max length 65536 | Current length 22589 | Haystack: 1025
+Max length 65536 | Current length 23079 | Haystack: 1050
+Max length 65536 | Current length 23698 | Haystack: 1075
+Max length 65536 | Current length 24188 | Haystack: 1100
+Max length 65536 | Current length 24748 | Haystack: 1125
+Max length 65536 | Current length 25300 | Haystack: 1150
+Max length 65536 | Current length 25819 | Haystack: 1175
+Max length 65536 | Current length 26343 | Haystack: 1200
+Max length 65536 | Current length 26993 | Haystack: 1225
+Max length 65536 | Current length 27468 | Haystack: 1250
+Max length 65536 | Current length 28006 | Haystack: 1275
+Max length 65536 | Current length 28604 | Haystack: 1300
+Max length 65536 | Current length 29142 | Haystack: 1325
+Max length 65536 | Current length 29643 | Haystack: 1350
+Max length 65536 | Current length 30226 | Haystack: 1375
+Max length 65536 | Current length 30834 | Haystack: 1400
+Max length 65536 | Current length 31268 | Haystack: 1425
+Max length 65536 | Current length 31885 | Haystack: 1450
+Max length 65536 | Current length 32399 | Haystack: 1475
+Max length 65536 | Current length 32973 | Haystack: 1500
+Max length 65536 | Current length 33461 | Haystack: 1525
+Max length 65536 | Current length 33972 | Haystack: 1550
+Max length 65536 | Current length 34549 | Haystack: 1575
+Max length 65536 | Current length 35134 | Haystack: 1600
+Max length 65536 | Current length 35640 | Haystack: 1625
+Max length 65536 | Current length 36196 | Haystack: 1650
+Max length 65536 | Current length 36810 | Haystack: 1675
+Max length 65536 | Current length 37379 | Haystack: 1700
+Max length 65536 | Current length 37800 | Haystack: 1725
+Max length 65536 | Current length 38474 | Haystack: 1750
+Max length 65536 | Current length 38912 | Haystack: 1775
+Max length 65536 | Current length 39528 | Haystack: 1800
+Max length 65536 | Current length 40071 | Haystack: 1825
+Max length 65536 | Current length 40672 | Haystack: 1850
+Max length 65536 | Current length 41104 | Haystack: 1875
+Max length 65536 | Current length 41816 | Haystack: 1900
+Max length 65536 | Current length 42200 | Haystack: 1925
+Max length 65536 | Current length 42708 | Haystack: 1950
+Max length 65536 | Current length 43291 | Haystack: 1975
+Max length 65536 | Current length 43850 | Haystack: 2000
+Max length 65536 | Current length 44397 | Haystack: 2025
+Max length 65536 | Current length 44987 | Haystack: 2050
+Max length 65536 | Current length 45490 | Haystack: 2075
+Max length 65536 | Current length 46015 | Haystack: 2100
+Max length 65536 | Current length 46518 | Haystack: 2125
+Max length 65536 | Current length 47125 | Haystack: 2150
+Max length 65536 | Current length 47653 | Haystack: 2175
+Max length 65536 | Current length 48177 | Haystack: 2200
+Max length 65536 | Current length 48690 | Haystack: 2225
+Max length 65536 | Current length 49254 | Haystack: 2250
+Max length 65536 | Current length 49844 | Haystack: 2275
+Max length 65536 | Current length 50446 | Haystack: 2300
+Max length 65536 | Current length 50910 | Haystack: 2325
+Max length 65536 | Current length 51542 | Haystack: 2350
+Max length 65536 | Current length 52002 | Haystack: 2375
+Max length 65536 | Current length 52607 | Haystack: 2400
+Max length 65536 | Current length 53117 | Haystack: 2425
+Max length 65536 | Current length 53668 | Haystack: 2450
+Max length 65536 | Current length 54127 | Haystack: 2475
+Max length 65536 | Current length 54727 | Haystack: 2500
+Max length 65536 | Current length 55212 | Haystack: 2525
+Max length 65536 | Current length 55889 | Haystack: 2550
+Max length 65536 | Current length 56346 | Haystack: 2575
+Max length 65536 | Current length 56936 | Haystack: 2600
+Max length 65536 | Current length 57588 | Haystack: 2625
+Max length 65536 | Current length 57970 | Haystack: 2650
+Max length 65536 | Current length 58580 | Haystack: 2675
+Max length 65536 | Current length 59143 | Haystack: 2700
+Max length 65536 | Current length 59690 | Haystack: 2725
+Max length 65536 | Current length 60225 | Haystack: 2750
+Max length 65536 | Current length 60791 | Haystack: 2775
+Max length 65536 | Current length 61252 | Haystack: 2800
+Max length 65536 | Current length 61968 | Haystack: 2825
+Max length 65536 | Current length 62423 | Haystack: 2850
+Max length 65536 | Current length 62898 | Haystack: 2875
+Max length 65536 | Current length 63423 | Haystack: 2900
+Max length 65536 | Current length 64018 | Haystack: 2925
+Max length 65536 | Current length 64454 | Haystack: 2950
+Max length 65536 | Current length 65087 | Haystack: 2975
+Max length 65536 | Current length 65589 | Haystack: 3000
+Num haystack: 25
+Max length 65536 | Current length 2246 | Haystack: 25
+Max length 65536 | Current length 4136 | Haystack: 50
+Max length 65536 | Current length 6033 | Haystack: 75
+Max length 65536 | Current length 7941 | Haystack: 100
+Max length 65536 | Current length 9886 | Haystack: 125
+Max length 65536 | Current length 11784 | Haystack: 150
+Max length 65536 | Current length 13670 | Haystack: 175
+Max length 65536 | Current length 15448 | Haystack: 200
+Max length 65536 | Current length 17509 | Haystack: 225
+Max length 65536 | Current length 19281 | Haystack: 250
+Max length 65536 | Current length 21291 | Haystack: 275
+Max length 65536 | Current length 23161 | Haystack: 300
+Max length 65536 | Current length 24956 | Haystack: 325
+Max length 65536 | Current length 26960 | Haystack: 350
+Max length 65536 | Current length 28851 | Haystack: 375
+Max length 65536 | Current length 30792 | Haystack: 400
+Max length 65536 | Current length 32560 | Haystack: 425
+Max length 65536 | Current length 34557 | Haystack: 450
+Max length 65536 | Current length 36462 | Haystack: 475
+Max length 65536 | Current length 38336 | Haystack: 500
+Max length 65536 | Current length 40239 | Haystack: 525
+Max length 65536 | Current length 42037 | Haystack: 550
+Max length 65536 | Current length 44088 | Haystack: 575
+Max length 65536 | Current length 45898 | Haystack: 600
+Max length 65536 | Current length 47846 | Haystack: 625
+Max length 65536 | Current length 49760 | Haystack: 650
+Max length 65536 | Current length 51626 | Haystack: 675
+Max length 65536 | Current length 53505 | Haystack: 700
+Max length 65536 | Current length 55419 | Haystack: 725
+Max length 65536 | Current length 57404 | Haystack: 750
+Max length 65536 | Current length 59206 | Haystack: 775
+Max length 65536 | Current length 61053 | Haystack: 800
+Max length 65536 | Current length 63045 | Haystack: 825
+Max length 65536 | Current length 65011 | Haystack: 850
+Max length 65536 | Current length 66713 | Haystack: 875
+Num haystack: 500
+Max length 65536 | Current length 898 | Haystack: 500
+Max length 65536 | Current length 1467 | Haystack: 1000
+Max length 65536 | Current length 2028 | Haystack: 1500
+Max length 65536 | Current length 2642 | Haystack: 2000
+Max length 65536 | Current length 3243 | Haystack: 2500
+Max length 65536 | Current length 3803 | Haystack: 3000
+Max length 65536 | Current length 4380 | Haystack: 3500
+Max length 65536 | Current length 4982 | Haystack: 4000
+Max length 65536 | Current length 5595 | Haystack: 4500
+Max length 65536 | Current length 6147 | Haystack: 5000
+Max length 65536 | Current length 6722 | Haystack: 5500
+Max length 65536 | Current length 7310 | Haystack: 6000
+Max length 65536 | Current length 7911 | Haystack: 6500
+Max length 65536 | Current length 8542 | Haystack: 7000
+Max length 65536 | Current length 9149 | Haystack: 7500
+Max length 65536 | Current length 9738 | Haystack: 8000
+Max length 65536 | Current length 10314 | Haystack: 8500
+Max length 65536 | Current length 10911 | Haystack: 9000
+Max length 65536 | Current length 11542 | Haystack: 9500
+Max length 65536 | Current length 12155 | Haystack: 10000
+Max length 65536 | Current length 12742 | Haystack: 10500
+Max length 65536 | Current length 13353 | Haystack: 11000
+Max length 65536 | Current length 13918 | Haystack: 11500
+Max length 65536 | Current length 14503 | Haystack: 12000
+Max length 65536 | Current length 15112 | Haystack: 12500
+Max length 65536 | Current length 15668 | Haystack: 13000
+Max length 65536 | Current length 16261 | Haystack: 13500
+Max length 65536 | Current length 16836 | Haystack: 14000
+Max length 65536 | Current length 17434 | Haystack: 14500
+Max length 65536 | Current length 18037 | Haystack: 15000
+Max length 65536 | Current length 18626 | Haystack: 15500
+Max length 65536 | Current length 19184 | Haystack: 16000
+Max length 65536 | Current length 19747 | Haystack: 16500
+Max length 65536 | Current length 20329 | Haystack: 17000
+Max length 65536 | Current length 20898 | Haystack: 17500
+Max length 65536 | Current length 21491 | Haystack: 18000
+Max length 65536 | Current length 22053 | Haystack: 18500
+Max length 65536 | Current length 22650 | Haystack: 19000
+Max length 65536 | Current length 23237 | Haystack: 19500
+Max length 65536 | Current length 23803 | Haystack: 20000
+Max length 65536 | Current length 24389 | Haystack: 20500
+Max length 65536 | Current length 24969 | Haystack: 21000
+Max length 65536 | Current length 25541 | Haystack: 21500
+Max length 65536 | Current length 26140 | Haystack: 22000
+Max length 65536 | Current length 26719 | Haystack: 22500
+Max length 65536 | Current length 27307 | Haystack: 23000
+Max length 65536 | Current length 27908 | Haystack: 23500
+Max length 65536 | Current length 28499 | Haystack: 24000
+Max length 65536 | Current length 29104 | Haystack: 24500
+Max length 65536 | Current length 29654 | Haystack: 25000
+Max length 65536 | Current length 30269 | Haystack: 25500
+Max length 65536 | Current length 30879 | Haystack: 26000
+Max length 65536 | Current length 31519 | Haystack: 26500
+Max length 65536 | Current length 32295 | Haystack: 27000
+Max length 65536 | Current length 32986 | Haystack: 27500
+Max length 65536 | Current length 33595 | Haystack: 28000
+Max length 65536 | Current length 34186 | Haystack: 28500
+Max length 65536 | Current length 34748 | Haystack: 29000
+Max length 65536 | Current length 35314 | Haystack: 29500
+Max length 65536 | Current length 35880 | Haystack: 30000
+Max length 65536 | Current length 36462 | Haystack: 30500
+Max length 65536 | Current length 37039 | Haystack: 31000
+Max length 65536 | Current length 37609 | Haystack: 31500
+Max length 65536 | Current length 38180 | Haystack: 32000
+Max length 65536 | Current length 38777 | Haystack: 32500
+Max length 65536 | Current length 39372 | Haystack: 33000
+Max length 65536 | Current length 39978 | Haystack: 33500
+Max length 65536 | Current length 40555 | Haystack: 34000
+Max length 65536 | Current length 41167 | Haystack: 34500
+Max length 65536 | Current length 41739 | Haystack: 35000
+Max length 65536 | Current length 42333 | Haystack: 35500
+Max length 65536 | Current length 42916 | Haystack: 36000
+Max length 65536 | Current length 43525 | Haystack: 36500
+Max length 65536 | Current length 44101 | Haystack: 37000
+Max length 65536 | Current length 44720 | Haystack: 37500
+Max length 65536 | Current length 45304 | Haystack: 38000
+Max length 65536 | Current length 45870 | Haystack: 38500
+Max length 65536 | Current length 46460 | Haystack: 39000
+Max length 65536 | Current length 47047 | Haystack: 39500
+Max length 65536 | Current length 47597 | Haystack: 40000
+Max length 65536 | Current length 48169 | Haystack: 40500
+Max length 65536 | Current length 48748 | Haystack: 41000
+Max length 65536 | Current length 49326 | Haystack: 41500
+Max length 65536 | Current length 49905 | Haystack: 42000
+Max length 65536 | Current length 50519 | Haystack: 42500
+Max length 65536 | Current length 51073 | Haystack: 43000
+Max length 65536 | Current length 51616 | Haystack: 43500
+Max length 65536 | Current length 52176 | Haystack: 44000
+Max length 65536 | Current length 52781 | Haystack: 44500
+Max length 65536 | Current length 53375 | Haystack: 45000
+Max length 65536 | Current length 53928 | Haystack: 45500
+Max length 65536 | Current length 54541 | Haystack: 46000
+Max length 65536 | Current length 55120 | Haystack: 46500
+Max length 65536 | Current length 55705 | Haystack: 47000
+Max length 65536 | Current length 56287 | Haystack: 47500
+Max length 65536 | Current length 56871 | Haystack: 48000
+Max length 65536 | Current length 57442 | Haystack: 48500
+Max length 65536 | Current length 58026 | Haystack: 49000
+Max length 65536 | Current length 58595 | Haystack: 49500
+Max length 65536 | Current length 59157 | Haystack: 50000
+Max length 65536 | Current length 59776 | Haystack: 50500
+Max length 65536 | Current length 60395 | Haystack: 51000
+Max length 65536 | Current length 60985 | Haystack: 51500
+Max length 65536 | Current length 61552 | Haystack: 52000
+Max length 65536 | Current length 62150 | Haystack: 52500
+Max length 65536 | Current length 62719 | Haystack: 53000
+Max length 65536 | Current length 63315 | Haystack: 53500
+Max length 65536 | Current length 63902 | Haystack: 54000
+Max length 65536 | Current length 64466 | Haystack: 54500
+Max length 65536 | Current length 65052 | Haystack: 55000
+Max length 65536 | Current length 65669 | Haystack: 55500
+Num haystack: 500
+Max length 65536 | Current length 927 | Haystack: 500
+Max length 65536 | Current length 1505 | Haystack: 1000
+Max length 65536 | Current length 2048 | Haystack: 1500
+Max length 65536 | Current length 2674 | Haystack: 2000
+Max length 65536 | Current length 3266 | Haystack: 2500
+Max length 65536 | Current length 3820 | Haystack: 3000
+Max length 65536 | Current length 4412 | Haystack: 3500
+Max length 65536 | Current length 5014 | Haystack: 4000
+Max length 65536 | Current length 5615 | Haystack: 4500
+Max length 65536 | Current length 6188 | Haystack: 5000
+Max length 65536 | Current length 6745 | Haystack: 5500
+Max length 65536 | Current length 7339 | Haystack: 6000
+Max length 65536 | Current length 7937 | Haystack: 6500
+Max length 65536 | Current length 8556 | Haystack: 7000
+Max length 65536 | Current length 9175 | Haystack: 7500
+Max length 65536 | Current length 9770 | Haystack: 8000
+Max length 65536 | Current length 10355 | Haystack: 8500
+Max length 65536 | Current length 10955 | Haystack: 9000
+Max length 65536 | Current length 11589 | Haystack: 9500
+Max length 65536 | Current length 12178 | Haystack: 10000
+Max length 65536 | Current length 12774 | Haystack: 10500
+Max length 65536 | Current length 13376 | Haystack: 11000
+Max length 65536 | Current length 13950 | Haystack: 11500
+Max length 65536 | Current length 14532 | Haystack: 12000
+Max length 65536 | Current length 15126 | Haystack: 12500
+Max length 65536 | Current length 15715 | Haystack: 13000
+Max length 65536 | Current length 16293 | Haystack: 13500
+Max length 65536 | Current length 16865 | Haystack: 14000
+Max length 65536 | Current length 17478 | Haystack: 14500
+Max length 65536 | Current length 18072 | Haystack: 15000
+Max length 65536 | Current length 18637 | Haystack: 15500
+Max length 65536 | Current length 19213 | Haystack: 16000
+Max length 65536 | Current length 19785 | Haystack: 16500
+Max length 65536 | Current length 20355 | Haystack: 17000
+Max length 65536 | Current length 20930 | Haystack: 17500
+Max length 65536 | Current length 21520 | Haystack: 18000
+Max length 65536 | Current length 22085 | Haystack: 18500
+Max length 65536 | Current length 22682 | Haystack: 19000
+Max length 65536 | Current length 23269 | Haystack: 19500
+Max length 65536 | Current length 23838 | Haystack: 20000
+Max length 65536 | Current length 24418 | Haystack: 20500
+Max length 65536 | Current length 24995 | Haystack: 21000
+Max length 65536 | Current length 25564 | Haystack: 21500
+Max length 65536 | Current length 26175 | Haystack: 22000
+Max length 65536 | Current length 26757 | Haystack: 22500
+Max length 65536 | Current length 27360 | Haystack: 23000
+Max length 65536 | Current length 27928 | Haystack: 23500
+Max length 65536 | Current length 28528 | Haystack: 24000
+Max length 65536 | Current length 29112 | Haystack: 24500
+Max length 65536 | Current length 29686 | Haystack: 25000
+Max length 65536 | Current length 30289 | Haystack: 25500
+Max length 65536 | Current length 30902 | Haystack: 26000
+Max length 65536 | Current length 31542 | Haystack: 26500
+Max length 65536 | Current length 32321 | Haystack: 27000
+Max length 65536 | Current length 33009 | Haystack: 27500
+Max length 65536 | Current length 33630 | Haystack: 28000
+Max length 65536 | Current length 34209 | Haystack: 28500
+Max length 65536 | Current length 34777 | Haystack: 29000
+Max length 65536 | Current length 35340 | Haystack: 29500
+Max length 65536 | Current length 35909 | Haystack: 30000
+Max length 65536 | Current length 36476 | Haystack: 30500
+Max length 65536 | Current length 37080 | Haystack: 31000
+Max length 65536 | Current length 37635 | Haystack: 31500
+Max length 65536 | Current length 38218 | Haystack: 32000
+Max length 65536 | Current length 38796 | Haystack: 32500
+Max length 65536 | Current length 39399 | Haystack: 33000
+Max length 65536 | Current length 40013 | Haystack: 33500
+Max length 65536 | Current length 40581 | Haystack: 34000
+Max length 65536 | Current length 41205 | Haystack: 34500
+Max length 65536 | Current length 41780 | Haystack: 35000
+Max length 65536 | Current length 42356 | Haystack: 35500
+Max length 65536 | Current length 42960 | Haystack: 36000
+Max length 65536 | Current length 43548 | Haystack: 36500
+Max length 65536 | Current length 44127 | Haystack: 37000
+Max length 65536 | Current length 44749 | Haystack: 37500
+Max length 65536 | Current length 45330 | Haystack: 38000
+Max length 65536 | Current length 45917 | Haystack: 38500
+Max length 65536 | Current length 46489 | Haystack: 39000
+Max length 65536 | Current length 47061 | Haystack: 39500
+Max length 65536 | Current length 47647 | Haystack: 40000
+Max length 65536 | Current length 48201 | Haystack: 40500
+Max length 65536 | Current length 48795 | Haystack: 41000
+Max length 65536 | Current length 49358 | Haystack: 41500
+Max length 65536 | Current length 49925 | Haystack: 42000
+Max length 65536 | Current length 50536 | Haystack: 42500
+Max length 65536 | Current length 51105 | Haystack: 43000
+Max length 65536 | Current length 51654 | Haystack: 43500
+Max length 65536 | Current length 52205 | Haystack: 44000
+Max length 65536 | Current length 52816 | Haystack: 44500
+Max length 65536 | Current length 53398 | Haystack: 45000
+Max length 65536 | Current length 53975 | Haystack: 45500
+Max length 65536 | Current length 54570 | Haystack: 46000
+Max length 65536 | Current length 55152 | Haystack: 46500
+Max length 65536 | Current length 55737 | Haystack: 47000
+Max length 65536 | Current length 56310 | Haystack: 47500
+Max length 65536 | Current length 56885 | Haystack: 48000
+Max length 65536 | Current length 57471 | Haystack: 48500
+Max length 65536 | Current length 58061 | Haystack: 49000
+Max length 65536 | Current length 58627 | Haystack: 49500
+Max length 65536 | Current length 59204 | Haystack: 50000
+Max length 65536 | Current length 59799 | Haystack: 50500
+Max length 65536 | Current length 60436 | Haystack: 51000
+Max length 65536 | Current length 61017 | Haystack: 51500
+Max length 65536 | Current length 61584 | Haystack: 52000
+Max length 65536 | Current length 62194 | Haystack: 52500
+Max length 65536 | Current length 62748 | Haystack: 53000
+Max length 65536 | Current length 63341 | Haystack: 53500
+Max length 65536 | Current length 63934 | Haystack: 54000
+Max length 65536 | Current length 64501 | Haystack: 54500
+Max length 65536 | Current length 65087 | Haystack: 55000
+Max length 65536 | Current length 65707 | Haystack: 55500
+Max length 65536 | Current length 422 | Noises: 10
+Max length 65536 | Current length 665 | Noises: 20
+Max length 65536 | Current length 902 | Noises: 30
+Max length 65536 | Current length 1137 | Noises: 40
+Max length 65536 | Current length 1382 | Noises: 50
+Max length 65536 | Current length 1622 | Noises: 60
+Max length 65536 | Current length 1861 | Noises: 70
+Max length 65536 | Current length 2096 | Noises: 80
+Max length 65536 | Current length 2339 | Noises: 90
+Max length 65536 | Current length 2584 | Noises: 100
+Max length 65536 | Current length 2819 | Noises: 110
+Max length 65536 | Current length 3053 | Noises: 120
+Max length 65536 | Current length 3300 | Noises: 130
+Max length 65536 | Current length 3539 | Noises: 140
+Max length 65536 | Current length 3783 | Noises: 150
+Max length 65536 | Current length 4027 | Noises: 160
+Max length 65536 | Current length 4259 | Noises: 170
+Max length 65536 | Current length 4499 | Noises: 180
+Max length 65536 | Current length 4745 | Noises: 190
+Max length 65536 | Current length 4979 | Noises: 200
+Max length 65536 | Current length 5216 | Noises: 210
+Max length 65536 | Current length 5459 | Noises: 220
+Max length 65536 | Current length 5700 | Noises: 230
+Max length 65536 | Current length 5942 | Noises: 240
+Max length 65536 | Current length 6179 | Noises: 250
+Max length 65536 | Current length 6423 | Noises: 260
+Max length 65536 | Current length 6658 | Noises: 270
+Max length 65536 | Current length 6905 | Noises: 280
+Max length 65536 | Current length 7141 | Noises: 290
+Max length 65536 | Current length 7381 | Noises: 300
+Max length 65536 | Current length 7622 | Noises: 310
+Max length 65536 | Current length 7857 | Noises: 320
+Max length 65536 | Current length 8102 | Noises: 330
+Max length 65536 | Current length 8339 | Noises: 340
+Max length 65536 | Current length 8581 | Noises: 350
+Max length 65536 | Current length 8824 | Noises: 360
+Max length 65536 | Current length 9056 | Noises: 370
+Max length 65536 | Current length 9299 | Noises: 380
+Max length 65536 | Current length 9540 | Noises: 390
+Max length 65536 | Current length 9782 | Noises: 400
+Max length 65536 | Current length 10019 | Noises: 410
+Max length 65536 | Current length 10262 | Noises: 420
+Max length 65536 | Current length 10501 | Noises: 430
+Max length 65536 | Current length 10740 | Noises: 440
+Max length 65536 | Current length 10976 | Noises: 450
+Max length 65536 | Current length 11224 | Noises: 460
+Max length 65536 | Current length 11459 | Noises: 470
+Max length 65536 | Current length 11705 | Noises: 480
+Max length 65536 | Current length 11936 | Noises: 490
+Max length 65536 | Current length 12181 | Noises: 500
+Max length 65536 | Current length 12419 | Noises: 510
+Max length 65536 | Current length 12665 | Noises: 520
+Max length 65536 | Current length 12905 | Noises: 530
+Max length 65536 | Current length 13142 | Noises: 540
+Max length 65536 | Current length 13383 | Noises: 550
+Max length 65536 | Current length 13618 | Noises: 560
+Max length 65536 | Current length 13862 | Noises: 570
+Max length 65536 | Current length 14099 | Noises: 580
+Max length 65536 | Current length 14347 | Noises: 590
+Max length 65536 | Current length 14579 | Noises: 600
+Max length 65536 | Current length 14816 | Noises: 610
+Max length 65536 | Current length 15059 | Noises: 620
+Max length 65536 | Current length 15300 | Noises: 630
+Max length 65536 | Current length 15542 | Noises: 640
+Max length 65536 | Current length 15773 | Noises: 650
+Max length 65536 | Current length 16033 | Noises: 660
+Max length 65536 | Current length 16256 | Noises: 670
+Max length 65536 | Current length 16503 | Noises: 680
+Max length 65536 | Current length 16736 | Noises: 690
+Max length 65536 | Current length 16983 | Noises: 700
+Max length 65536 | Current length 17217 | Noises: 710
+Max length 65536 | Current length 17457 | Noises: 720
+Max length 65536 | Current length 17703 | Noises: 730
+Max length 65536 | Current length 17942 | Noises: 740
+Max length 65536 | Current length 18182 | Noises: 750
+Max length 65536 | Current length 18422 | Noises: 760
+Max length 65536 | Current length 18664 | Noises: 770
+Max length 65536 | Current length 18901 | Noises: 780
+Max length 65536 | Current length 19141 | Noises: 790
+Max length 65536 | Current length 19387 | Noises: 800
+Max length 65536 | Current length 19619 | Noises: 810
+Max length 65536 | Current length 19859 | Noises: 820
+Max length 65536 | Current length 20099 | Noises: 830
+Max length 65536 | Current length 20339 | Noises: 840
+Max length 65536 | Current length 20588 | Noises: 850
+Max length 65536 | Current length 20823 | Noises: 860
+Max length 65536 | Current length 21065 | Noises: 870
+Max length 65536 | Current length 21296 | Noises: 880
+Max length 65536 | Current length 21536 | Noises: 890
+Max length 65536 | Current length 21777 | Noises: 900
+Max length 65536 | Current length 22025 | Noises: 910
+Max length 65536 | Current length 22259 | Noises: 920
+Max length 65536 | Current length 22499 | Noises: 930
+Max length 65536 | Current length 22738 | Noises: 940
+Max length 65536 | Current length 22978 | Noises: 950
+Max length 65536 | Current length 23220 | Noises: 960
+Max length 65536 | Current length 23461 | Noises: 970
+Max length 65536 | Current length 23699 | Noises: 980
+Max length 65536 | Current length 23945 | Noises: 990
+Max length 65536 | Current length 24179 | Noises: 1000
+Max length 65536 | Current length 24416 | Noises: 1010
+Max length 65536 | Current length 24662 | Noises: 1020
+Max length 65536 | Current length 24899 | Noises: 1030
+Max length 65536 | Current length 25147 | Noises: 1040
+Max length 65536 | Current length 25384 | Noises: 1050
+Max length 65536 | Current length 25615 | Noises: 1060
+Max length 65536 | Current length 25865 | Noises: 1070
+Max length 65536 | Current length 26096 | Noises: 1080
+Max length 65536 | Current length 26347 | Noises: 1090
+Max length 65536 | Current length 26578 | Noises: 1100
+Max length 65536 | Current length 26824 | Noises: 1110
+Max length 65536 | Current length 27059 | Noises: 1120
+Max length 65536 | Current length 27305 | Noises: 1130
+Max length 65536 | Current length 27546 | Noises: 1140
+Max length 65536 | Current length 27777 | Noises: 1150
+Max length 65536 | Current length 28023 | Noises: 1160
+Max length 65536 | Current length 28261 | Noises: 1170
+Max length 65536 | Current length 28503 | Noises: 1180
+Max length 65536 | Current length 28739 | Noises: 1190
+Max length 65536 | Current length 28979 | Noises: 1200
+Max length 65536 | Current length 29219 | Noises: 1210
+Max length 65536 | Current length 29459 | Noises: 1220
+Max length 65536 | Current length 29699 | Noises: 1230
+Max length 65536 | Current length 29939 | Noises: 1240
+Max length 65536 | Current length 30180 | Noises: 1250
+Max length 65536 | Current length 30414 | Noises: 1260
+Max length 65536 | Current length 30667 | Noises: 1270
+Max length 65536 | Current length 30903 | Noises: 1280
+Max length 65536 | Current length 31142 | Noises: 1290
+Max length 65536 | Current length 31387 | Noises: 1300
+Max length 65536 | Current length 31624 | Noises: 1310
+Max length 65536 | Current length 31864 | Noises: 1320
+Max length 65536 | Current length 32103 | Noises: 1330
+Max length 65536 | Current length 32339 | Noises: 1340
+Max length 65536 | Current length 32583 | Noises: 1350
+Max length 65536 | Current length 32825 | Noises: 1360
+Max length 65536 | Current length 33060 | Noises: 1370
+Max length 65536 | Current length 33301 | Noises: 1380
+Max length 65536 | Current length 33539 | Noises: 1390
+Max length 65536 | Current length 33779 | Noises: 1400
+Max length 65536 | Current length 34022 | Noises: 1410
+Max length 65536 | Current length 34260 | Noises: 1420
+Max length 65536 | Current length 34499 | Noises: 1430
+Max length 65536 | Current length 34744 | Noises: 1440
+Max length 65536 | Current length 34982 | Noises: 1450
+Max length 65536 | Current length 35228 | Noises: 1460
+Max length 65536 | Current length 35460 | Noises: 1470
+Max length 65536 | Current length 35699 | Noises: 1480
+Max length 65536 | Current length 35945 | Noises: 1490
+Max length 65536 | Current length 36179 | Noises: 1500
+Max length 65536 | Current length 36422 | Noises: 1510
+Max length 65536 | Current length 36658 | Noises: 1520
+Max length 65536 | Current length 36902 | Noises: 1530
+Max length 65536 | Current length 37136 | Noises: 1540
+Max length 65536 | Current length 37388 | Noises: 1550
+Max length 65536 | Current length 37622 | Noises: 1560
+Max length 65536 | Current length 37862 | Noises: 1570
+Max length 65536 | Current length 38099 | Noises: 1580
+Max length 65536 | Current length 38343 | Noises: 1590
+Max length 65536 | Current length 38578 | Noises: 1600
+Max length 65536 | Current length 38817 | Noises: 1610
+Max length 65536 | Current length 39064 | Noises: 1620
+Max length 65536 | Current length 39293 | Noises: 1630
+Max length 65536 | Current length 39542 | Noises: 1640
+Max length 65536 | Current length 39782 | Noises: 1650
+Max length 65536 | Current length 40026 | Noises: 1660
+Max length 65536 | Current length 40263 | Noises: 1670
+Max length 65536 | Current length 40502 | Noises: 1680
+Max length 65536 | Current length 40744 | Noises: 1690
+Max length 65536 | Current length 40981 | Noises: 1700
+Max length 65536 | Current length 41221 | Noises: 1710
+Max length 65536 | Current length 41467 | Noises: 1720
+Max length 65536 | Current length 41702 | Noises: 1730
+Max length 65536 | Current length 41942 | Noises: 1740
+Max length 65536 | Current length 42173 | Noises: 1750
+Max length 65536 | Current length 42424 | Noises: 1760
+Max length 65536 | Current length 42665 | Noises: 1770
+Max length 65536 | Current length 42899 | Noises: 1780
+Max length 65536 | Current length 43136 | Noises: 1790
+Max length 65536 | Current length 43379 | Noises: 1800
+Max length 65536 | Current length 43617 | Noises: 1810
+Max length 65536 | Current length 43858 | Noises: 1820
+Max length 65536 | Current length 44101 | Noises: 1830
+Max length 65536 | Current length 44342 | Noises: 1840
+Max length 65536 | Current length 44577 | Noises: 1850
+Max length 65536 | Current length 44821 | Noises: 1860
+Max length 65536 | Current length 45063 | Noises: 1870
+Max length 65536 | Current length 45302 | Noises: 1880
+Max length 65536 | Current length 45540 | Noises: 1890
+Max length 65536 | Current length 45774 | Noises: 1900
+Max length 65536 | Current length 46028 | Noises: 1910
+Max length 65536 | Current length 46262 | Noises: 1920
+Max length 65536 | Current length 46505 | Noises: 1930
+Max length 65536 | Current length 46742 | Noises: 1940
+Max length 65536 | Current length 46981 | Noises: 1950
+Max length 65536 | Current length 47219 | Noises: 1960
+Max length 65536 | Current length 47459 | Noises: 1970
+Max length 65536 | Current length 47705 | Noises: 1980
+Max length 65536 | Current length 47940 | Noises: 1990
+Max length 65536 | Current length 48183 | Noises: 2000
+Max length 65536 | Current length 48424 | Noises: 2010
+Max length 65536 | Current length 48665 | Noises: 2020
+Max length 65536 | Current length 48899 | Noises: 2030
+Max length 65536 | Current length 49144 | Noises: 2040
+Max length 65536 | Current length 49381 | Noises: 2050
+Max length 65536 | Current length 49625 | Noises: 2060
+Max length 65536 | Current length 49856 | Noises: 2070
+Max length 65536 | Current length 50099 | Noises: 2080
+Max length 65536 | Current length 50344 | Noises: 2090
+Max length 65536 | Current length 50582 | Noises: 2100
+Max length 65536 | Current length 50825 | Noises: 2110
+Max length 65536 | Current length 51054 | Noises: 2120
+Max length 65536 | Current length 51296 | Noises: 2130
+Max length 65536 | Current length 51538 | Noises: 2140
+Max length 65536 | Current length 51781 | Noises: 2150
+Max length 65536 | Current length 52025 | Noises: 2160
+Max length 65536 | Current length 52259 | Noises: 2170
+Max length 65536 | Current length 52498 | Noises: 2180
+Max length 65536 | Current length 52744 | Noises: 2190
+Max length 65536 | Current length 52982 | Noises: 2200
+Max length 65536 | Current length 53222 | Noises: 2210
+Max length 65536 | Current length 53463 | Noises: 2220
+Max length 65536 | Current length 53702 | Noises: 2230
+Max length 65536 | Current length 53937 | Noises: 2240
+Max length 65536 | Current length 54180 | Noises: 2250
+Max length 65536 | Current length 54421 | Noises: 2260
+Max length 65536 | Current length 54659 | Noises: 2270
+Max length 65536 | Current length 54905 | Noises: 2280
+Max length 65536 | Current length 55142 | Noises: 2290
+Max length 65536 | Current length 55384 | Noises: 2300
+Max length 65536 | Current length 55617 | Noises: 2310
+Max length 65536 | Current length 55859 | Noises: 2320
+Max length 65536 | Current length 56102 | Noises: 2330
+Max length 65536 | Current length 56343 | Noises: 2340
+Max length 65536 | Current length 56578 | Noises: 2350
+Max length 65536 | Current length 56821 | Noises: 2360
+Max length 65536 | Current length 57060 | Noises: 2370
+Max length 65536 | Current length 57302 | Noises: 2380
+Max length 65536 | Current length 57537 | Noises: 2390
+Max length 65536 | Current length 57782 | Noises: 2400
+Max length 65536 | Current length 58021 | Noises: 2410
+Max length 65536 | Current length 58263 | Noises: 2420
+Max length 65536 | Current length 58497 | Noises: 2430
+Max length 65536 | Current length 58740 | Noises: 2440
+Max length 65536 | Current length 58977 | Noises: 2450
+Max length 65536 | Current length 59222 | Noises: 2460
+Max length 65536 | Current length 59462 | Noises: 2470
+Max length 65536 | Current length 59702 | Noises: 2480
+Max length 65536 | Current length 59938 | Noises: 2490
+Max length 65536 | Current length 60179 | Noises: 2500
+Max length 65536 | Current length 60425 | Noises: 2510
+Max length 65536 | Current length 60659 | Noises: 2520
+Max length 65536 | Current length 60896 | Noises: 2530
+Max length 65536 | Current length 61139 | Noises: 2540
+Max length 65536 | Current length 61377 | Noises: 2550
+Max length 65536 | Current length 61621 | Noises: 2560
+Max length 65536 | Current length 61867 | Noises: 2570
+Max length 65536 | Current length 62104 | Noises: 2580
+Max length 65536 | Current length 62343 | Noises: 2590
+Max length 65536 | Current length 62579 | Noises: 2600
+Max length 65536 | Current length 62819 | Noises: 2610
+Max length 65536 | Current length 63062 | Noises: 2620
+Max length 65536 | Current length 63300 | Noises: 2630
+Max length 65536 | Current length 63542 | Noises: 2640
+Max length 65536 | Current length 63778 | Noises: 2650
+Max length 65536 | Current length 64018 | Noises: 2660
+Max length 65536 | Current length 64265 | Noises: 2670
+Max length 65536 | Current length 64499 | Noises: 2680
+Max length 65536 | Current length 64739 | Noises: 2690
+Max length 65536 | Current length 64979 | Noises: 2700
+Max length 65536 | Current length 65220 | Noises: 2710
+Max length 65536 | Current length 65465 | Noises: 2720
+Max length 65536 | Current length 65702 | Noises: 2730
+Num noises: 2720
+num_example_words: 33450
+Max length 65536 | Current length 3215 | Words: 10
+Max length 65536 | Current length 3418 | Words: 20
+Max length 65536 | Current length 3746 | Words: 30
+Max length 65536 | Current length 3787 | Words: 40
+Max length 65536 | Current length 3975 | Words: 50
+Max length 65536 | Current length 4263 | Words: 60
+Max length 65536 | Current length 4540 | Words: 70
+Max length 65536 | Current length 4700 | Words: 80
+Max length 65536 | Current length 4868 | Words: 90
+Max length 65536 | Current length 5015 | Words: 100
+Max length 65536 | Current length 5212 | Words: 110
+Max length 65536 | Current length 5248 | Words: 120
+Max length 65536 | Current length 5607 | Words: 130
+Max length 65536 | Current length 5699 | Words: 140
+Max length 65536 | Current length 5996 | Words: 150
+Max length 65536 | Current length 6218 | Words: 160
+Max length 65536 | Current length 6257 | Words: 170
+Max length 65536 | Current length 6443 | Words: 180
+Max length 65536 | Current length 6747 | Words: 190
+Max length 65536 | Current length 6833 | Words: 200
+Max length 65536 | Current length 7091 | Words: 210
+Max length 65536 | Current length 7296 | Words: 220
+Max length 65536 | Current length 7461 | Words: 230
+Max length 65536 | Current length 7579 | Words: 240
+Max length 65536 | Current length 7819 | Words: 250
+Max length 65536 | Current length 8136 | Words: 260
+Max length 65536 | Current length 8414 | Words: 270
+Max length 65536 | Current length 8477 | Words: 280
+Max length 65536 | Current length 8806 | Words: 290
+Max length 65536 | Current length 8988 | Words: 300
+Max length 65536 | Current length 9198 | Words: 310
+Max length 65536 | Current length 9398 | Words: 320
+Max length 65536 | Current length 9616 | Words: 330
+Max length 65536 | Current length 9867 | Words: 340
+Max length 65536 | Current length 9970 | Words: 350
+Max length 65536 | Current length 10335 | Words: 360
+Max length 65536 | Current length 10576 | Words: 370
+Max length 65536 | Current length 10886 | Words: 380
+Max length 65536 | Current length 11169 | Words: 390
+Max length 65536 | Current length 11175 | Words: 400
+Max length 65536 | Current length 11457 | Words: 410
+Max length 65536 | Current length 11742 | Words: 420
+Max length 65536 | Current length 11982 | Words: 430
+Max length 65536 | Current length 12168 | Words: 440
+Max length 65536 | Current length 12307 | Words: 450
+Max length 65536 | Current length 12608 | Words: 460
+Max length 65536 | Current length 12817 | Words: 470
+Max length 65536 | Current length 12928 | Words: 480
+Max length 65536 | Current length 13081 | Words: 490
+Max length 65536 | Current length 13476 | Words: 500
+Max length 65536 | Current length 13604 | Words: 510
+Max length 65536 | Current length 14034 | Words: 520
+Max length 65536 | Current length 14122 | Words: 530
+Max length 65536 | Current length 14340 | Words: 540
+Max length 65536 | Current length 14503 | Words: 550
+Max length 65536 | Current length 14786 | Words: 560
+Max length 65536 | Current length 14906 | Words: 570
+Max length 65536 | Current length 15280 | Words: 580
+Max length 65536 | Current length 15343 | Words: 590
+Max length 65536 | Current length 15906 | Words: 600
+Max length 65536 | Current length 16061 | Words: 610
+Max length 65536 | Current length 16156 | Words: 620
+Max length 65536 | Current length 16376 | Words: 630
+Max length 65536 | Current length 16594 | Words: 640
+Max length 65536 | Current length 16776 | Words: 650
+Max length 65536 | Current length 16920 | Words: 660
+Max length 65536 | Current length 17345 | Words: 670
+Max length 65536 | Current length 17470 | Words: 680
+Max length 65536 | Current length 17621 | Words: 690
+Max length 65536 | Current length 17896 | Words: 700
+Max length 65536 | Current length 18064 | Words: 710
+Max length 65536 | Current length 18450 | Words: 720
+Max length 65536 | Current length 18439 | Words: 730
+Max length 65536 | Current length 18914 | Words: 740
+Max length 65536 | Current length 19155 | Words: 750
+Max length 65536 | Current length 19260 | Words: 760
+Max length 65536 | Current length 19664 | Words: 770
+Max length 65536 | Current length 19669 | Words: 780
+Max length 65536 | Current length 19913 | Words: 790
+Max length 65536 | Current length 20112 | Words: 800
+Max length 65536 | Current length 20415 | Words: 810
+Max length 65536 | Current length 20718 | Words: 820
+Max length 65536 | Current length 20703 | Words: 830
+Max length 65536 | Current length 20893 | Words: 840
+Max length 65536 | Current length 21134 | Words: 850
+Max length 65536 | Current length 21518 | Words: 860
+Max length 65536 | Current length 21601 | Words: 870
+Max length 65536 | Current length 21900 | Words: 880
+Max length 65536 | Current length 22010 | Words: 890
+Max length 65536 | Current length 22442 | Words: 900
+Max length 65536 | Current length 22596 | Words: 910
+Max length 65536 | Current length 22730 | Words: 920
+Max length 65536 | Current length 22934 | Words: 930
+Max length 65536 | Current length 23323 | Words: 940
+Max length 65536 | Current length 23590 | Words: 950
+Max length 65536 | Current length 23558 | Words: 960
+Max length 65536 | Current length 23954 | Words: 970
+Max length 65536 | Current length 24102 | Words: 980
+Max length 65536 | Current length 24356 | Words: 990
+Max length 65536 | Current length 24560 | Words: 1000
+Max length 65536 | Current length 24770 | Words: 1010
+Max length 65536 | Current length 24932 | Words: 1020
+Max length 65536 | Current length 25112 | Words: 1030
+Max length 65536 | Current length 25466 | Words: 1040
+Max length 65536 | Current length 25682 | Words: 1050
+Max length 65536 | Current length 26142 | Words: 1060
+Max length 65536 | Current length 26231 | Words: 1070
+Max length 65536 | Current length 26375 | Words: 1080
+Max length 65536 | Current length 26629 | Words: 1090
+Max length 65536 | Current length 26904 | Words: 1100
+Max length 65536 | Current length 26863 | Words: 1110
+Max length 65536 | Current length 27271 | Words: 1120
+Max length 65536 | Current length 27470 | Words: 1130
+Max length 65536 | Current length 27820 | Words: 1140
+Max length 65536 | Current length 27890 | Words: 1150
+Max length 65536 | Current length 28201 | Words: 1160
+Max length 65536 | Current length 28443 | Words: 1170
+Max length 65536 | Current length 28622 | Words: 1180
+Max length 65536 | Current length 28774 | Words: 1190
+Max length 65536 | Current length 28997 | Words: 1200
+Max length 65536 | Current length 29177 | Words: 1210
+Max length 65536 | Current length 29480 | Words: 1220
+Max length 65536 | Current length 29885 | Words: 1230
+Max length 65536 | Current length 30093 | Words: 1240
+Max length 65536 | Current length 30179 | Words: 1250
+Max length 65536 | Current length 30243 | Words: 1260
+Max length 65536 | Current length 30585 | Words: 1270
+Max length 65536 | Current length 30900 | Words: 1280
+Max length 65536 | Current length 31169 | Words: 1290
+Max length 65536 | Current length 31346 | Words: 1300
+Max length 65536 | Current length 31430 | Words: 1310
+Max length 65536 | Current length 31618 | Words: 1320
+Max length 65536 | Current length 32016 | Words: 1330
+Max length 65536 | Current length 32329 | Words: 1340
+Max length 65536 | Current length 32408 | Words: 1350
+Max length 65536 | Current length 32832 | Words: 1360
+Max length 65536 | Current length 32719 | Words: 1370
+Max length 65536 | Current length 33046 | Words: 1380
+Max length 65536 | Current length 33136 | Words: 1390
+Max length 65536 | Current length 33444 | Words: 1400
+Max length 65536 | Current length 33538 | Words: 1410
+Max length 65536 | Current length 33844 | Words: 1420
+Max length 65536 | Current length 34315 | Words: 1430
+Max length 65536 | Current length 34586 | Words: 1440
+Max length 65536 | Current length 34657 | Words: 1450
+Max length 65536 | Current length 34956 | Words: 1460
+Max length 65536 | Current length 35007 | Words: 1470
+Max length 65536 | Current length 35307 | Words: 1480
+Max length 65536 | Current length 35502 | Words: 1490
+Max length 65536 | Current length 35572 | Words: 1500
+Max length 65536 | Current length 35946 | Words: 1510
+Max length 65536 | Current length 36136 | Words: 1520
+Max length 65536 | Current length 36335 | Words: 1530
+Max length 65536 | Current length 36570 | Words: 1540
+Max length 65536 | Current length 36688 | Words: 1550
+Max length 65536 | Current length 36927 | Words: 1560
+Max length 65536 | Current length 37273 | Words: 1570
+Max length 65536 | Current length 37511 | Words: 1580
+Max length 65536 | Current length 37787 | Words: 1590
+Max length 65536 | Current length 37809 | Words: 1600
+Max length 65536 | Current length 38276 | Words: 1610
+Max length 65536 | Current length 38380 | Words: 1620
+Max length 65536 | Current length 38698 | Words: 1630
+Max length 65536 | Current length 38826 | Words: 1640
+Max length 65536 | Current length 38946 | Words: 1650
+Max length 65536 | Current length 39159 | Words: 1660
+Max length 65536 | Current length 39484 | Words: 1670
+Max length 65536 | Current length 39653 | Words: 1680
+Max length 65536 | Current length 39854 | Words: 1690
+Max length 65536 | Current length 40351 | Words: 1700
+Max length 65536 | Current length 40429 | Words: 1710
+Max length 65536 | Current length 40622 | Words: 1720
+Max length 65536 | Current length 40870 | Words: 1730
+Max length 65536 | Current length 41014 | Words: 1740
+Max length 65536 | Current length 41257 | Words: 1750
+Max length 65536 | Current length 41474 | Words: 1760
+Max length 65536 | Current length 41671 | Words: 1770
+Max length 65536 | Current length 41925 | Words: 1780
+Max length 65536 | Current length 42073 | Words: 1790
+Max length 65536 | Current length 42354 | Words: 1800
+Max length 65536 | Current length 42778 | Words: 1810
+Max length 65536 | Current length 42640 | Words: 1820
+Max length 65536 | Current length 42921 | Words: 1830
+Max length 65536 | Current length 43362 | Words: 1840
+Max length 65536 | Current length 43351 | Words: 1850
+Max length 65536 | Current length 43615 | Words: 1860
+Max length 65536 | Current length 43993 | Words: 1870
+Max length 65536 | Current length 44134 | Words: 1880
+Max length 65536 | Current length 44361 | Words: 1890
+Max length 65536 | Current length 44578 | Words: 1900
+Max length 65536 | Current length 44827 | Words: 1910
+Max length 65536 | Current length 45119 | Words: 1920
+Max length 65536 | Current length 45252 | Words: 1930
+Max length 65536 | Current length 45430 | Words: 1940
+Max length 65536 | Current length 45907 | Words: 1950
+Max length 65536 | Current length 46028 | Words: 1960
+Max length 65536 | Current length 46419 | Words: 1970
+Max length 65536 | Current length 46400 | Words: 1980
+Max length 65536 | Current length 46538 | Words: 1990
+Max length 65536 | Current length 46976 | Words: 2000
+Max length 65536 | Current length 47136 | Words: 2010
+Max length 65536 | Current length 47088 | Words: 2020
+Max length 65536 | Current length 47583 | Words: 2030
+Max length 65536 | Current length 47718 | Words: 2040
+Max length 65536 | Current length 47899 | Words: 2050
+Max length 65536 | Current length 48204 | Words: 2060
+Max length 65536 | Current length 48200 | Words: 2070
+Max length 65536 | Current length 48521 | Words: 2080
+Max length 65536 | Current length 48842 | Words: 2090
+Max length 65536 | Current length 49025 | Words: 2100
+Max length 65536 | Current length 49327 | Words: 2110
+Max length 65536 | Current length 49406 | Words: 2120
+Max length 65536 | Current length 49728 | Words: 2130
+Max length 65536 | Current length 50073 | Words: 2140
+Max length 65536 | Current length 50239 | Words: 2150
+Max length 65536 | Current length 50439 | Words: 2160
+Max length 65536 | Current length 50641 | Words: 2170
+Max length 65536 | Current length 50876 | Words: 2180
+Max length 65536 | Current length 51096 | Words: 2190
+Max length 65536 | Current length 51196 | Words: 2200
+Max length 65536 | Current length 51667 | Words: 2210
+Max length 65536 | Current length 51568 | Words: 2220
+Max length 65536 | Current length 52001 | Words: 2230
+Max length 65536 | Current length 52213 | Words: 2240
+Max length 65536 | Current length 52372 | Words: 2250
+Max length 65536 | Current length 52489 | Words: 2260
+Max length 65536 | Current length 52948 | Words: 2270
+Max length 65536 | Current length 52964 | Words: 2280
+Max length 65536 | Current length 53287 | Words: 2290
+Max length 65536 | Current length 53409 | Words: 2300
+Max length 65536 | Current length 53715 | Words: 2310
+Max length 65536 | Current length 54011 | Words: 2320
+Max length 65536 | Current length 54100 | Words: 2330
+Max length 65536 | Current length 54507 | Words: 2340
+Max length 65536 | Current length 54559 | Words: 2350
+Max length 65536 | Current length 54666 | Words: 2360
+Max length 65536 | Current length 55048 | Words: 2370
+Max length 65536 | Current length 55550 | Words: 2380
+Max length 65536 | Current length 55552 | Words: 2390
+Max length 65536 | Current length 55792 | Words: 2400
+Max length 65536 | Current length 56139 | Words: 2410
+Max length 65536 | Current length 56106 | Words: 2420
+Max length 65536 | Current length 56248 | Words: 2430
+Max length 65536 | Current length 56679 | Words: 2440
+Max length 65536 | Current length 57013 | Words: 2450
+Max length 65536 | Current length 57085 | Words: 2460
+Max length 65536 | Current length 57406 | Words: 2470
+Max length 65536 | Current length 57592 | Words: 2480
+Max length 65536 | Current length 57779 | Words: 2490
+Max length 65536 | Current length 57820 | Words: 2500
+Max length 65536 | Current length 58071 | Words: 2510
+Max length 65536 | Current length 58320 | Words: 2520
+Max length 65536 | Current length 58636 | Words: 2530
+Max length 65536 | Current length 58744 | Words: 2540
+Max length 65536 | Current length 59005 | Words: 2550
+Max length 65536 | Current length 59214 | Words: 2560
+Max length 65536 | Current length 59358 | Words: 2570
+Max length 65536 | Current length 59901 | Words: 2580
+Max length 65536 | Current length 60001 | Words: 2590
+Max length 65536 | Current length 60197 | Words: 2600
+Max length 65536 | Current length 60358 | Words: 2610
+Max length 65536 | Current length 60713 | Words: 2620
+Max length 65536 | Current length 60842 | Words: 2630
+Max length 65536 | Current length 60971 | Words: 2640
+Max length 65536 | Current length 61309 | Words: 2650
+Max length 65536 | Current length 61609 | Words: 2660
+Max length 65536 | Current length 61841 | Words: 2670
+Max length 65536 | Current length 61821 | Words: 2680
+Max length 65536 | Current length 62139 | Words: 2690
+Max length 65536 | Current length 62559 | Words: 2700
+Max length 65536 | Current length 62543 | Words: 2710
+Max length 65536 | Current length 62876 | Words: 2720
+Max length 65536 | Current length 63109 | Words: 2730
+Max length 65536 | Current length 63147 | Words: 2740
+Max length 65536 | Current length 63711 | Words: 2750
+Max length 65536 | Current length 63928 | Words: 2760
+Max length 65536 | Current length 63904 | Words: 2770
+Max length 65536 | Current length 64169 | Words: 2780
+Max length 65536 | Current length 64464 | Words: 2790
+Max length 65536 | Current length 64737 | Words: 2800
+Max length 65536 | Current length 64801 | Words: 2810
+Max length 65536 | Current length 64847 | Words: 2820
+Max length 65536 | Current length 65263 | Words: 2830
+Max length 65536 | Current length 65720 | Words: 2840
+num_words: 2830
+09/18 13:35:38 - OpenCompass - INFO - Partitioned into 2 tasks.
+09/18 13:35:38 - OpenCompass - WARNING - Ignored argument in opencompass.runners.local: retry=5
+09/18 13:35:38 - OpenCompass - WARNING - Default to dump eval details, it might take extraspace to save all the evaluation details. Set --dump-eval-details False to skip the details dump
+09/18 13:35:38 - OpenCompass - INFO - Partitioned into 13 tasks.
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_vt_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_64k_0,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_64k_0] on GPU 0
+launch OpenICLInfer[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_vt_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_fwe_64k_1,qwen3_06b_base_ttt_57998376_step100/ruler_cwe_64k_1] on GPU 1
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_squad_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_qa_hotpotqa_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_1_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_2_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_single_3_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_1_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_2_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multikey_3_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multivalue_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_niah_multiquery_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_vt_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_fwe_64k] on CPU 
+launch OpenICLEval[qwen3_06b_base_ttt_57998376_step100/ruler_cwe_64k] on CPU 
+dataset    version    metric    mode    qwen3_06b_base_ttt_57998376_step100
+---------  ---------  --------  ------  -------------------------------------
+64k        -          -         -       -
+09/18 14:34:23 - OpenCompass - INFO - write summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/64k/20260918_132912/summary/summary_20260918_132912.txt
+09/18 14:34:23 - OpenCompass - INFO - write csv to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/64k/20260918_132912/summary/summary_20260918_132912.csv
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | qwen3_06b_base_ttt_57998376_step100 |
+|----- | ----- | ----- | ----- | -----|
+| 64k | - | - | - | - |
+
+09/18 14:34:23 - OpenCompass - INFO - write markdown summary to /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/64k/20260918_132912/summary/summary_20260918_132912.md
+[phase2] closed-form patch on 64k: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/predictions/64k/20260918_132912/predictions/qwen3_06b_base_ttt_57998376_step100 (2 shards = 2 GPUs × 1 per GPU)
+  [shard 0] done (GPU 0)
+  [shard 1] done (GPU 1)
+  merged 13 tasks -> /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/64k/summary.json
+RULER 64k Full-13 closed-form score: 37.68
+
+========= CLOSED-FORM RULER Full-13 =========
+  length  n_tasks     patch
+------------------------------
+      4k       13     77.72
+      8k       13     69.10
+     16k       13     64.38
+     32k       13     55.77
+     64k       13     37.68
+------------------------------
+     AVG              66.74  (paper: 4k-32k)
+ ALL AVG              60.93  (4k, 8k, 16k, 32k, 64k)
+
+wrote /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/ruler_cf_summary.json
+[done] closed-form RULER results under /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069
+RULER 4k Full-13 closed-form score: 77.72
+RULER 8k Full-13 closed-form score: 69.10
+RULER 16k Full-13 closed-form score: 64.38
+RULER 32k Full-13 closed-form score: 55.77
+RULER 64k Full-13 closed-form score: 37.68
+Summary: /leonardo/home/userexternal/fmorandi/TTT-NTP/results/cf_ruler/qwen3_06b_base_ttt_57998376_step100_58106069/ruler_cf_summary.json

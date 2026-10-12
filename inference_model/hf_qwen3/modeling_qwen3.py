@@ -89,31 +89,27 @@ class Qwen3MLP(nn.Module):
         self.down_proj = nn.Linear(self.intermediate_size, self.hidden_size, bias=False)
         self.act_fn = ACT2FN[config.hidden_act]
         self.layer_idx = -1 if layer_idx is None else layer_idx
-        self.is_ttt = (
-            getattr(config, "ttt_mode", False)
-            and self.layer_idx in getattr(config, "ttt_layers", [])
-        )
+        self.is_ttt = getattr(config, "ttt_mode", False) and self.layer_idx in getattr(config, "ttt_layers", [])
+        self.ttt_method = getattr(config, "ttt_method", "ttt-ntp")
         if self.is_ttt:
             self.ttt_chunk = int(getattr(config, "ttt_chunk", 1024))
             self.ttt_lr = float(getattr(config, "ttt_lr", 3.0))
-            self.ttt_inner_opt = getattr(config, "ttt_inner_opt", "sgd")
-            self.ttt_norm_preserve = bool(getattr(config, "ttt_norm_preserve", False))
             self.ttt_proj = nn.Linear(self.hidden_size, self.hidden_size, bias=False)
+            if self.ttt_method == "in-place-ttt":
+                self.ttt_conv = nn.Conv1d(self.hidden_size, self.hidden_size, kernel_size=5, padding=2, groups=self.hidden_size, bias=False)
+            else:
+                self.ttt_inner_opt = getattr(config, "ttt_inner_opt", "sgd")
+                self.ttt_norm_preserve = bool(getattr(config, "ttt_norm_preserve", False))
 
     def padding(self, x):
-        if x.shape[1] % self.ttt_chunk != 0:
-            padding_embeddings = torch.zeros(
-                [x.shape[0], self.ttt_chunk - x.shape[1] % self.ttt_chunk, x.shape[2]],
-                device=x.device, dtype=x.dtype,
-            )
-            x = torch.cat([x, padding_embeddings], dim=1)
+        if x.shape[1] % self.ttt_chunk:
+            x = torch.cat([x, torch.zeros([x.shape[0], self.ttt_chunk - x.shape[1] % self.ttt_chunk, x.shape[2]], device=x.device, dtype=x.dtype)], dim=1)
         return rearrange(x, "b (t c) d -> b t c d", c=self.ttt_chunk)
 
     def forward(self, x, t=None, past_w=None, past_m=None):
-        # x shape: (b, L, d_hidden); h shape: (b, L, d_inter)
-        bs = x.shape[0]
+        bs, seq_len, _ = x.shape
         h = self.act_fn(self.gate_proj(x)) * self.up_proj(x)
-        if not getattr(self, "is_ttt", False):
+        if not self.is_ttt:
             return self.down_proj(h)
         if past_w is None:
             present_w = self.down_proj.weight.unsqueeze(0).expand(bs, -1, -1).contiguous()
@@ -121,48 +117,43 @@ class Qwen3MLP(nn.Module):
             present_w = past_w.unsqueeze(0).expand(bs, -1, -1).contiguous()
         else:
             present_w = past_w
-        if t is None:
+        if t is None or seq_len < self.ttt_chunk:
+            # ``present_w`` is a separate fast weight for every batch item:
+            # (B, d_hidden, d_inter).  ``F.linear`` only accepts a 2-D
+            # weight, so it fails during prefill/decode once TTT cache state
+            # is present.  Batched matmul applies the corresponding weight to
+            # every (B, T, d_inter) activation instead.
             out = torch.matmul(h, present_w.transpose(-1, -2))
             if self.down_proj.bias is not None:
                 out = out + self.down_proj.bias
             return out, present_w, None
-        seq_len = x.shape[1]
-        if seq_len < self.ttt_chunk:
-            out = torch.matmul(h, present_w.transpose(-1, -2))
-            if self.down_proj.bias is not None:
-                out = out + self.down_proj.bias
-            return out, present_w, None
-        t_padded = self.padding(t)            # (b, T, c, d_hidden)
-        h_padded = self.padding(h)            # (b, T, c, d_inter)
-        _, chunk_num, chunk_size, _ = t_padded.shape
+
+        t_padded, h_padded = self.padding(t), self.padding(h)
+        if self.ttt_method == "in-place-ttt":
+            # Match training: learned depthwise target convolution and a next-token in-place write per complete chunk.
+            t_padded = self.ttt_conv(t_padded.transpose(-1, -2).reshape(-1, self.hidden_size, self.ttt_chunk)).transpose(-1, -2).reshape_as(t_padded)
+        chunk_num = t_padded.shape[1]
         current_w = present_w
-        init_norm = self.down_proj.weight.norm(dim=-1, keepdim=True) if self.ttt_norm_preserve else None
-        y = torch.zeros_like(t_padded)        # (b, T, c, d_hidden)
+        y = torch.empty_like(t_padded)
+        init_norm = self.down_proj.weight.norm(dim=-1, keepdim=True) if getattr(self, "ttt_norm_preserve", False) and self.ttt_method == "ttt-ntp" else None
         for i in range(chunk_num):
-            current_t = t_padded[:, i]        # (b, c, d_hidden)
-            current_h = h_padded[:, i]        # (b, c, d_inter)
-            if init_norm is not None:
-                cur_norm = current_w.norm(dim=-1, keepdim=True).clamp_min(1e-5)
-                out_w = current_w / cur_norm * init_norm
-            else:
-                out_w = current_w
-            current_y = contract("b d h, b c h -> b c d", out_w, current_h)
-            y[:, i] = current_y
+            current_h, current_t = h_padded[:, i], t_padded[:, i]
+            out_w = current_w if init_norm is None else current_w / current_w.norm(dim=-1, keepdim=True).clamp_min(1e-5) * init_norm
+            y[:, i] = contract("b d h, b c h -> b c d", out_w, current_h)
             if seq_len % self.ttt_chunk == 0 or i != chunk_num - 1:
-                h_src = current_h[:, :-1]
-                tgt_t = current_t[:, 1:]
-                dw = contract("b c h, b c d, d e -> b e h", h_src, tgt_t, self.ttt_proj.weight)
-                if self.ttt_inner_opt == "specnorm":
-                    g32 = dw.float()
-                    v = torch.nn.functional.normalize(g32.mean(dim=-2, keepdim=True).transpose(-2, -1), dim=-2, eps=1e-8)
-                    for _ in range(5):
-                        u = torch.nn.functional.normalize(g32 @ v, dim=-2, eps=1e-8)
-                        v = torch.nn.functional.normalize(g32.transpose(-2, -1) @ u, dim=-2, eps=1e-8)
-                    sigma = (u.transpose(-2, -1) @ g32 @ v).clamp_min(1e-6)
-                    dw = (g32 / sigma).to(dw.dtype)
+                if self.ttt_method == "in-place-ttt":
+                    dw = contract("b c h, b c d, d e -> b e h", current_h[:, :-1], current_t[:, 1:], self.ttt_proj.weight)
+                else:
+                    dw = contract("b c h, b c d, d e -> b e h", current_h[:, :-1], current_t[:, 1:], self.ttt_proj.weight)
+                    if self.ttt_inner_opt == "specnorm":
+                        g32 = dw.float()
+                        v = torch.nn.functional.normalize(g32.mean(dim=-2, keepdim=True).transpose(-2, -1), dim=-2, eps=1e-8)
+                        for _ in range(5):
+                            u = torch.nn.functional.normalize(g32 @ v, dim=-2, eps=1e-8)
+                            v = torch.nn.functional.normalize(g32.transpose(-2, -1) @ u, dim=-2, eps=1e-8)
+                        dw = (g32 / (u.transpose(-2, -1) @ g32 @ v).clamp_min(1e-6)).to(dw.dtype)
                 current_w = current_w + self.ttt_lr * dw
-        out = rearrange(y, "b t c d -> b (t c) d")[:, :seq_len, :]
-        return out, current_w, None
+        return rearrange(y, "b t c d -> b (t c) d")[:, :seq_len], current_w, None
 
 
 def rotate_half(x):
@@ -422,6 +413,10 @@ class Qwen3PreTrainedModel(PreTrainedModel):
         std = self.config.initializer_range
         if isinstance(module, nn.Linear):
             module.weight.data.normal_(mean=0.0, std=std)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        elif isinstance(module, nn.Conv1d):
+            module.weight.data.zero_()
             if module.bias is not None:
                 module.bias.data.zero_()
         elif isinstance(module, nn.Embedding):

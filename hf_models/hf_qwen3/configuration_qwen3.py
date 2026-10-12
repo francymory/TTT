@@ -181,6 +181,7 @@ class Qwen3Config(PretrainedConfig):
         layer_types=None,
         attention_dropout=0.0,
         ttt_layers=[0, 6, 12, 18, 24, 30],
+        ttt_method="ttt-ntp",
         ttt_mode=True,
         ttt_proj=True,
         ttt_proj_init="diag_shared",  # "diag_shared" (release) | "small" | "identity" (paper wording)
@@ -235,6 +236,9 @@ class Qwen3Config(PretrainedConfig):
         layer_type_validation(self.layer_types, self.num_hidden_layers)
 
         self.ttt_layers = ttt_layers
+        if ttt_method not in ("ttt-ntp", "in-place-ttt", "standard-ft"):
+            raise ValueError("ttt_method must be ttt-ntp, in-place-ttt, or standard-ft")
+        self.ttt_method = ttt_method
         self.ttt_mode = ttt_mode
         self.ttt_proj = ttt_proj
         if ttt_proj_init not in ("diag_shared", "small", "identity"):
@@ -248,8 +252,8 @@ class Qwen3Config(PretrainedConfig):
         self.ttt_norm_preserve = bool(ttt_norm_preserve)
         if ttt_target != "hidden_states":
             raise ValueError("ttt_target must be 'hidden_states' (TTT-NTP)")
-        if ttt_conv:
-            raise ValueError("ttt_conv must be false (TTT-NTP has no convolutional target)")
+        if ttt_conv and ttt_method != "in-place-ttt":
+            raise ValueError("ttt_conv is only supported by in-place-ttt")
         if ttt_predict_mode != "next":
             raise ValueError("ttt_predict_mode must be 'next' (TTT-NTP)")
         self.ttt_target = ttt_target
