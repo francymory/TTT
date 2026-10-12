@@ -187,4 +187,5 @@ log.txt
 
 A_logs/
 results/
-scripts/
+scripts/eval_scripts/
+scripts/train_scripts/
